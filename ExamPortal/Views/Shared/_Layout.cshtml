@@ -1,0 +1,133 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewBag.Title - Exam Portal</title>
+    @Styles.Render("~/Content/css")
+    @Scripts.Render("~/bundles/modernizr")
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/bootstrap")
+    @Scripts.Render("~/bundles/jqueryui")
+    <style>
+        .btn {
+            margin-top: 5px;
+            margin-bottom: 5px;
+        }
+    </style>
+</head>
+<body>
+    <div class="navbar navbar-inverse navbar-fixed-top">
+        <div class="container">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                @Html.ActionLink("Exam Portal", "Index", "Home", new { area = "" }, new { @class = "nav navbar-brand" })
+            </div>
+            <div class="navbar-collapse collapse">
+                <ul class="nav navbar-nav">
+                    @if (Session["role"] != null)
+                    {
+                        if (((List<string>)Session["role"]).Contains("student"))
+                        {
+                            <li>@Html.ActionLink("Student Profile", "Index", "Students")</li>
+                            <li>@Html.ActionLink("My Test", "", "Students")</li>
+                            <li>@Html.ActionLink("Upcoming Test", "UpcomingTest", "Students")</li>
+                        }
+                        if (((List<string>)Session["role"]).Contains("teacher"))
+                        {
+                            <li>@Html.ActionLink("Teacher Desk", "Index", "Teachers")</li>
+                        }
+                        if (((List<string>)Session["role"]).Contains("coordinator"))
+                        {
+                            <li>@Html.ActionLink("Coordinator Desk", "Index", "Coordinators")</li>
+                        }
+                        if (((List<string>)Session["role"]).Contains("admin"))
+                        {
+                            <li>@Html.ActionLink("Admin Desk", "Index", "Admins")</li>
+                        }
+                            <li>@Html.ActionLink("Logout", "Logout", "Home")</li>
+                    }
+                    else
+                    {
+                        <li>@Html.ActionLink("Home", "Index", "Home")</li>
+                        <li>@Html.ActionLink("About", "About", "Home")</li>
+                        <li>@Html.ActionLink("Contact", "Contact", "Home")</li>
+                        <li>@Html.ActionLink("Test Distribution System", "SetDistributionSystem", "Admins")</li>
+                    }
+                </ul>
+            </div>
+        </div>
+    </div>
+    @{string controller = this.ViewContext.RouteData.Values["controller"].ToString();}
+    @{string homeController = "Home";}
+    <div class="container@(controller.Equals(homeController) ? "" : "-fluid") body-content">
+        <div class="row">
+            <div class="@(controller.Equals(homeController) ? "col-lg-12" : "col-lg-10")">
+                @RenderBody()
+            </div>
+            @if (!controller.Equals(homeController))
+            {
+                <div class="col-lg-2" id="right-sidebar">
+                    <h2>Right Sidebar</h2>
+                    <p>
+
+                        <div class="list-group">
+                            @if (((List<string>)Session["role"]).Contains("admin"))
+                            {
+                                @Html.ActionLink("Admin Desk", "Index", "Admins", new { }, new { @class = "list-group-item active" })
+                                @Html.ActionLink("View Questions", "ViewQuestion", "Teachers", new { }, new { @class = "list-group-item" })
+                                @Html.ActionLink("View Students", "ListStudents", "Admins", new { }, new { @class = "list-group-item" })
+                                @Html.ActionLink("List Teachers", "IndexTeachers", "Teachers", new { }, new { @class = "list-group-item" })
+                                @Html.ActionLink("View Tests", "ListTest", "Admins", new { }, new { @class = "list-group-item" })
+                                @Html.ActionLink("Add New Teacher", "CreateTeacher", "Admins", new { }, new { @class = "list-group-item" })
+                                @Html.ActionLink("Manage Current Subjects", "IndexSubject", "Admins", new { }, new { @class = "list-group-item" })
+                                @Html.ActionLink("Manage Subjects in 10th", "IndexSubjects_In_10th", "Admins", new { }, new { @class = "list-group-item" })
+                                @Html.ActionLink("Manage Subjects in 12th", "IndexSubjects_In_12th", "Admins", new { }, new { @class = "list-group-item" })
+                                @Html.ActionLink("Manage Courses", "IndexCourse", "Admins", new { }, new { @class = "list-group-item" })
+                                @Html.ActionLink("Manage Class Coordinators", "CreateClass", "Admins", new { }, new { @class = "list-group-item" })
+                            }
+                            @if (((List<string>)Session["role"]).Contains("teacher"))
+                            {
+                                @Html.ActionLink("Teacher Desk", "Index", "Teachers", new { }, new { @class = "list-group-item active" })
+                                @Html.ActionLink("View Questions", "ViewQuestion", "Teachers", new { }, new { @class = "list-group-item" })
+                                @Html.ActionLink("View Students", "ListStudents", "Admins", new { }, new { @class = "list-group-item" })
+                                @Html.ActionLink("Create New Question", "AddQuestion", "Teachers", new { }, new { @class = "list-group-item" })
+                                @Html.ActionLink("Create New Test", "AddQuestionToTest", "Teachers", new { }, new { @class = "list-group-item" })
+                                @Html.ActionLink("List Teachers", "IndexTeachers", "Teachers", new { }, new { @class = "list-group-item" })
+                            }
+                            @if (((List<string>)Session["role"]).Contains("coordinator"))
+                            {
+                                @Html.ActionLink("Coordinator Desk", "Index", "Coordinators", new { }, new { @class = "list-group-item active" })
+                                @Html.ActionLink("Add New Student", "AddNewStudentLogin", "Coordinators", new { }, new { @class = "list-group-item" })
+                                @Html.ActionLink("Assign Teacher Subject", "AssignTeacherSubject", "Coordinators", new { }, new { @class = "list-group-item" })
+                                @Html.ActionLink("List Teachers", "IndexTeachers", "Teachers", new { }, new { @class = "list-group-item" })
+                            }
+                            @if (((List<string>)Session["role"]).Contains("student"))
+                            {
+                                @Html.ActionLink("Student Desk", "Index", "Students", new { }, new { @class = "list-group-item active" })
+                                @Html.ActionLink("Upcoming Tests", "UpcomingTest", "Students", new { }, new { @class = "list-group-item" })
+                                @Html.ActionLink("Test Result", "TestResult", "Students", new { }, new { @class = "list-group-item" })
+                            }
+                        </div>
+
+                    </p>
+                </div>
+            }
+        </div>
+        <hr />
+        <footer>
+            <p>&copy; 2019 - Exam Portal</p>
+            @*@MvcHtmlString.Create(homeController)
+                <br />
+                @MvcHtmlString.Create(controller)*@
+        </footer>
+    </div>
+
+    @Styles.Render("~/Content/themes/base/css")
+    @RenderSection("scripts", required: false)
+</body>
+</html>

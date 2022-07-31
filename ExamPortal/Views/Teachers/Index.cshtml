@@ -1,0 +1,18 @@
+﻿@using ExamPortal.Models;
+@model TeacherDeskVM
+    <div class="row">
+        <div class="col-lg-12">
+            <h2>Unassigned Tests</h2>
+            @{
+                Html.RenderPartial("_ListUnassignedTest", Model.UnassignedTestTeacherDesks);
+            }
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-lg-12">
+            <h2>Unapproved Results</h2>
+            @{
+                Html.RenderPartial("_ListUnapprovedResult", Model.UnapprovedResultsTeacherDesks);
+            }
+        </div>
+    </div>

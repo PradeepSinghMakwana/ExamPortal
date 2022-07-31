@@ -1,0 +1,35 @@
+﻿@model IEnumerable<ExamPortal.Models.Course>
+
+@{
+    ViewBag.Title = "Index";
+}
+<script src="//code.jquery.com/jquery-2.1.1.min.js" type="text/javascript"></script>
+<script>
+    $(function () {
+        $("#right-sidebar .list-group").find("a").removeClass('active');
+        $('#right-sidebar .list-group a:contains("Manage Courses")').addClass("active");
+    });
+</script>
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "CreateCourse","Admins",new { }, new { @class = "btn btn-primary" })
+</p>
+<table class="table">
+    <tr>
+        <th>@Html.DisplayNameFor(model => model.course_name)</th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>@Html.DisplayFor(modelItem => item.course_name)</td>
+            <td>
+                @Html.ActionLink("Edit", "EditCourse","Admins", new { id = item.course_name }, new { @class = "btn btn-primary" }) |
+                @Html.ActionLink("Delete", "DeleteCourse","Admins", new { id = item.course_name }, new { @class = "btn btn-danger" })
+            </td>
+        </tr>
+    }
+
+</table>

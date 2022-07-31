@@ -1,0 +1,68 @@
+﻿@using ExamPortal.Models
+@model IEnumerable<Test>
+@{string j_url = ViewData["attach_javascript"].ToString();}
+    <table class="table">
+        <tr>
+            <th>
+                Select
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.test_id)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.test_name)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.description)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Subject.subject_name)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Teacher.faculty_name)
+            </th>
+            <th>
+                Date
+            </th>
+            <th>
+                Start Time
+            </th>
+            <th>
+                End Time
+            </th>
+        </tr>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    <span class="btn btn-primary" id="j_url" data-id="@item.test_id">Select</span>
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.test_id)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.test_name)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.description)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Subject.subject_name)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Teacher.faculty_name)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.start_datetime.ToShortDateString())
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.start_datetime.ToLocalTime())
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.end_datetime.ToLocalTime())
+                </td>
+                
+            </tr>
+        }
+
+    </table>

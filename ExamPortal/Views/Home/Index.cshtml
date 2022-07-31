@@ -1,0 +1,68 @@
+﻿@{
+    ViewBag.Title = "Home Page";
+}
+<style>
+    .text-normal {
+        font-weight: normal;
+    }
+
+    .body {
+        background-color: aquamarine;
+        padding-bottom: 10px;
+        margin-top: 30px;
+        border-radius: 10px 10px;
+    }
+
+        .body p {
+            font-size: 16px;
+        }
+
+        .body h1 {
+            margin-bottom: 10px;
+        }
+</style>
+<div class="container body">
+    <h1 class="text-center text-capitalize">Exam Portal</h1>
+    <p class="text-success">It is found that students learn faster when they are given challenging questions from the subject matter just taught. And, conducting full answer written tests, every day is not possible. Here, comes computer based tests at rescue. They are faster to conduct, rewarding to students and can become better estimation of their understanding, if designed properly.</p>
+    <p>Exam Portal is a software for conducting, monitoring and recording tests. The software will be easy for invigilator, and not requiring her to stand and check each and every students desk. The questions in test are arranged randomly, distributed in mutualy exclusive sets and multiple choice, multi-correct questions are going to make it a tough time for students who pass on luck or by cheating. Solving a problem commonly faced in automated student evaluation systems and manual conduction of tests.</p>
+    <p><a href=@Url.Action("About", "Home") role="button"><span class="btn btn-primary btn-lg">Learn more &raquo;</span></a></p>
+</div>
+
+<div class="row">
+    <div class="col-md-4">
+        <h2>Student</h2>
+        <p>
+            Students Login/Register here
+        </p>
+        <p>
+            @Html.ActionLink("Student Login", "StudentLogin", "Home", new { area = "" }, new { @class = "btn btn-primary" })
+        </p>
+    </div>
+    <div class="col-md-4">
+        <h2>Teacher</h2>
+        <p>Teachers can be coordinator, experts, teaching faculty. Please login here.</p>
+        <p>
+            @Html.ActionLink("Teacher Login", "TeacherLogin", "Home", new { area = "" }, new { @class = "btn btn-default" })
+        </p>
+    </div>
+    <div class="col-md-4">
+        <h2>Admin</h2>
+        <p>Admin a.k.a Admininistrators are the backbone of this system. You govern all the different entities and environment. Please login here.</p>
+        <p>
+            @Html.ActionLink("Admin Login", "AdminLogin", "Home", new { area = "" }, new { @class = "btn btn-default" })
+        </p>
+    </div>
+</div>
+@*@{List<IPAddress> arr = Dns.GetHostEntry(Request.ServerVariables["REMOTE_HOST"]).AddressList.ToList();}
+    @{string hostName = Dns.GetHostEntry(Request.ServerVariables["REMOTE_HOST"]).HostName;
+    MvcHtmlString.Create(hostName);
+    }
+    @foreach (var item in arr)
+    {
+        @MvcHtmlString.Create(@item.ToString())
+        <br />
+    }
+    </p>
+    <p>
+        @Request.UserAgent
+    </p>*@

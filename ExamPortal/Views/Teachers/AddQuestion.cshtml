@@ -1,0 +1,140 @@
+﻿@using ExamPortal.Models.ViewModels;
+@model QuestionVM
+<style>
+    textarea, select {
+        max-width: 100%;
+    }
+</style>
+<script src="//code.jquery.com/jquery-2.1.1.min.js" type="text/javascript"></script>
+<script>
+    $(function () {
+        $("#right-sidebar .list-group").find("a").removeClass('active');
+        $('#right-sidebar .list-group a:contains("Create New Question")').addClass("active");
+    });
+</script>
+@using (Html.BeginForm("AddQuestion", "Teachers"))
+{
+    @Html.AntiForgeryToken()
+    <div>
+        <h2>Add Question</h2>
+        <div class="row">
+            <div class="col-lg-12">
+                @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                
+                    <p>
+
+                        <div class="form-group">
+                            @Html.LabelFor(x => Model.Subject, htmlAttributes: new { @class = "control-label col-md-2" })
+                            <div class="col-md-10">
+                                @Html.DropDownListFor(x => Model.subject_code, new SelectList(Model.Subjects, "Value", "Text"), htmlAttributes: new { @class = "form-control", id = "Subject" })
+                                @Html.ValidationMessageFor(x => x.subject_code, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+                    </p>
+                
+                <div class="form-group">
+                    <label class="col-md-2 control-label">Ques @Html.DisplayFor(model=>model.new_q_id))</label>
+                    @Html.TextAreaFor(model => model.question_text, new { htmlAttributes = new { @class = "form-control" }, rows = "5", cols = "160", style = "" })
+                    @Html.ValidationMessageFor(x => x.question_text, "", new { @class = "text-danger" })
+                </div>
+                <hr />
+                <table class="table table-bordered text-center">
+                    <tr>
+                        <th>Use option</th>
+                        <th>Correct Option</th>
+                        <th>Option Text</th>
+                    </tr>
+                    <tr>
+                        <td>@Html.CheckBoxFor(model => model.use_option1)</td>
+                        <td>@Html.CheckBoxFor(model => model.is_option1_correct)</td>
+                        <td>
+                            @Html.TextAreaFor(model => model.option1, new { @cols = "120" })<br />
+                            @Html.ValidationMessageFor(x => x.option1, "", new { @class = "text-danger" })
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>@Html.CheckBoxFor(model => model.use_option2)</td>
+                        <td>@Html.CheckBoxFor(model => model.is_option2_correct)</td>
+                        <td>
+                            @Html.TextAreaFor(model => model.option2, new { @cols = "120" })<br />
+                            @Html.ValidationMessageFor(x => x.option1, "", new { @class = "text-danger" })
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>@Html.CheckBoxFor(model => model.use_option3)</td>
+                        <td>@Html.CheckBoxFor(model => model.is_option3_correct)</td>
+                        <td>
+                            @Html.TextAreaFor(model => model.option3, new { @cols = "120" })<br />
+                            @Html.ValidationMessageFor(x => x.option1, "", new { @class = "text-danger" })
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>@Html.CheckBoxFor(model => model.use_option4)</td>
+                        <td>@Html.CheckBoxFor(model => model.is_option4_correct)</td>
+                        <td>
+                            @Html.TextAreaFor(model => model.option4, new { @cols = "120" })<br />
+                            @Html.ValidationMessageFor(x => x.option1, "", new { @class = "text-danger" })
+                        </td>
+                    </tr>
+                </table>
+                <div class="form-group">
+                    @Html.LabelFor(x => Model.difficulty_level, htmlAttributes: new { @class = "control-label col-md-2" })
+                    <div class="col-md-10">
+                        @Html.DropDownListFor(x => Model.difficulty_level, new SelectList(Model.DifficultyLevels, "Value", "Text"), htmlAttributes: new { @class = "form-control", id = "Difficulty" })
+                        @Html.ValidationMessageFor(x => x.difficulty_level, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+                <div class="form-group text-center">
+                    <input type="submit" value="Add Question to Repository" class="btn btn-primary" />
+                </div>
+            </div>
+        </div>
+    </div>
+}
+<script src="//code.jquery.com/jquery-2.1.1.min.js" type="text/javascript"></script>
+<script>
+    $(function () {
+        if (!$('#@Html.IdFor(model => model.use_option1)').checked) {
+            $(function () {
+                $('#@Html.IdFor(model=>model.is_option1_correct)').toggle(this.checked);
+                $('#@Html.IdFor(model=>model.option1)').toggle(this.checked);
+            });
+        }
+        if (!$('#@Html.IdFor(model => model.use_option2)').checked) {
+            $(function () {
+                $('#@Html.IdFor(model=>model.is_option2_correct)').toggle(this.checked);
+                $('#@Html.IdFor(model=>model.option2)').toggle(this.checked);
+            });
+        }
+        if (!$('#@Html.IdFor(model => model.use_option3)').checked) {
+            $(function () {
+                $('#@Html.IdFor(model=>model.is_option3_correct)').toggle(this.checked);
+                $('#@Html.IdFor(model=>model.option3)').toggle(this.checked);
+            });
+        }
+        if (!$('#@Html.IdFor(model => model.use_option4)').checked) {
+            $(function () {
+                $('#@Html.IdFor(model=>model.is_option4_correct)').toggle(this.checked);
+                $('#@Html.IdFor(model=>model.option4)').toggle(this.checked);
+            });
+        }
+
+
+        $('#@Html.IdFor(model => model.use_option1)').click(function () {
+            $('#@Html.IdFor(model=>model.is_option1_correct)').toggle(this.checked);
+            $('#@Html.IdFor(model=>model.option1)').toggle(this.checked);
+        });
+        $('#@Html.IdFor(model => model.use_option2)').click(function () {
+            $('#@Html.IdFor(model=>model.is_option2_correct)').toggle(this.checked);
+            $('#@Html.IdFor(model=>model.option2)').toggle(this.checked);
+        });
+        $('#@Html.IdFor(model => model.use_option3)').click(function () {
+            $('#@Html.IdFor(model=>model.is_option3_correct)').toggle(this.checked);
+            $('#@Html.IdFor(model=>model.option3)').toggle(this.checked);
+        });
+        $('#@Html.IdFor(model => model.use_option4)').click(function () {
+            $('#@Html.IdFor(model=>model.is_option4_correct)').toggle(this.checked);
+            $('#@Html.IdFor(model=>model.option4)').toggle(this.checked);
+        });
+    });
+</script>

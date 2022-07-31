@@ -1,0 +1,16 @@
+﻿@model IEnumerable<ExamPortal.Models.ViewModels.QuestionVM>
+
+<h3>Unit @(ViewData["unit"].ToString())</h3>
+<div class="list-group">
+    @foreach (var item in Model)
+    {
+        <a href="#@item.q_id" class="list-group-item col-lg-10">
+            <h4 class="list-group-item-heading">@Html.DisplayFor(modelItem => item.question_text)</h4>
+            <p class="list-group-item-text" style="color:@(item.is_option1_correct ? "green" : "inherit");display:@(item.use_option1 ? "block" : "none")">@Html.DisplayFor(modelItem => item.option1)</p>
+            <p class="list-group-item-text" style="color:@(item.is_option2_correct ? "green" : "inherit");display:@(item.use_option2 ? "block" : "none")">@Html.DisplayFor(modelItem => item.option2)</p>
+            <p class="list-group-item-text" style="color:@(item.is_option3_correct ? "green" : "inherit");display:@(item.use_option3 ? "block" : "none")">@Html.DisplayFor(modelItem => item.option3)</p>
+            <p class="list-group-item-text" style="color:@(item.is_option4_correct ? "green" : "inherit");display:@(item.use_option4 ? "block" : "none")">@Html.DisplayFor(modelItem => item.option4)</p>
+            @Html.ActionLink("Remove", "deleteFromTempCreatedTest", "Teachers", new { questionId = item.q_id, unit = (int)ViewData["unit"] }, new { @class = "btn btn-danger btn-lg col-lg-2" })
+        </a>
+    }
+</div>

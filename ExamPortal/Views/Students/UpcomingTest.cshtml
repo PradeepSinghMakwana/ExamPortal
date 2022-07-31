@@ -1,0 +1,17 @@
+﻿
+@{
+    ViewBag.Title = "UpcomingTest";
+}
+
+<h2>UpcomingTest</h2>
+
+@using ExamPortal.Models;
+@model UpcomingTestVM
+
+<h2>@ViewBag.Title</h2>
+
+<div>
+    @{
+        Html.RenderPartial("_RegisterForAssignedTest", Model.UpcomingTests);
+    }
+</div>

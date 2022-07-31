@@ -1,0 +1,46 @@
+﻿@model ExamPortal.Models.ViewModels.CoordinatorVM
+
+    <div class="row">
+        <div class="col-lg-7">
+            <ul class="nav nav-tabs">
+                <li class="active"><a data-toggle="tab" href="#StudentsImCoordinating">Students I'm Coordinating</a></li>
+                <li><a data-toggle="tab" href="#StudentsITeach">Students I Teach</a></li>
+            </ul>
+            <div class="tab-content">
+                <div id="StudentsImCoordinating" class="tab-pane fade in active">
+                    <h2>Students I'm Coordinating</h2>
+                    @{
+                        Html.RenderPartial("_ListStudentsGrid", Model.studentsImCoordinating);
+                    }
+                </div>
+                <div id="StudentsITeach" class="tab-pane fade">
+                    <h2>Students I Teach</h2>
+                    @{
+                        Html.RenderPartial("_ListStudentsGrid", Model.studentsITeach);
+                    }
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-5">
+            <div id="StudentDetails"></div>
+        </div>
+    </div>
+    <div class="row">
+        <h2>Approve new student registration</h2>
+        @{
+            Html.RenderPartial("_ListStudentsTable", Model.UnapprovedStudents);
+        }
+    </div>
+    <div class="row">
+        @Html.ActionLink("Add Student Login", "AddNewStudentLogin")
+    </div>
+<script>
+    $(function () {
+        var url = '@Url.Action("getDetails", "Coordinators")';
+        $("#StudentsImCoordinating .grid-cell").on('click', function (event) {
+            $.get(url, { id: $(this).data('id') }, function (data) {
+                $("#StudentDetails").html(data);
+            });
+        });
+    });
+</script>

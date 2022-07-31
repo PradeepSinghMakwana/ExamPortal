@@ -1,0 +1,120 @@
+﻿@model ExamPortal.Models.Teacher
+
+@{
+    ViewBag.Title = "Delete";
+}
+
+<h2>Delete</h2>
+
+<h3>Are you sure you want to delete this?</h3>
+<div>
+    <h4>Teacher</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.faculty_name)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.faculty_name)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.graduate)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.graduate)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.post_graduate)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.post_graduate)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.year_graduated)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.year_graduated)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.year_post_graduated)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.year_post_graduated)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.dob)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.dob)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.blood_group)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.blood_group)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.residential_address)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.residential_address)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.mobile)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.mobile)
+        </dd>
+
+        <dt>
+            Is Coordinator
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Classes.Any(c => c.class_coordinator == model.faculty_id))
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.served)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.served)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.UserLogin.username)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.UserLogin.username)
+        </dd>
+
+    </dl>
+
+    @using (Html.BeginForm("DeleteTeacher", "Admins", FormMethod.Post)) {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value="Delete" class="btn btn-default" /> |
+            @Html.ActionLink("Back to List", "IndexTeachers","Teachers",new { }, new { @class = "btn btn-primary" })
+        </div>
+    }
+</div>

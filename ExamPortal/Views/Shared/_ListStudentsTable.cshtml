@@ -1,0 +1,52 @@
+﻿@model IEnumerable<ExamPortal.Models.ViewModels.CreateStudentVM>
+
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.scholar_no)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.photo)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.unique_name)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Pretty_Class_name)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.age)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model=>model.mobile)
+        </th>
+    </tr>
+    @foreach (var item in Model)
+    {
+    <tr>
+        @*
+        <td>
+            <input type="checkbox" name="selected" value="@item.scholar_no" />
+        </td>
+            *@
+            <td>
+                @Html.DisplayFor(modelItem => item.scholar_no)
+            </td>
+            <td>
+                <img src="~/Resources/StudentsPic/@item.photo" />
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.unique_name)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Pretty_Class_name)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.age)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.mobile)
+            </td>
+        </tr>
+    }
+</table>

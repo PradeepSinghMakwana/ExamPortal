@@ -1,0 +1,90 @@
+﻿
+@{
+    ViewBag.Title = "Assign Teacher with Subject";
+}
+@model ExamPortal.Models.ViewModels.AssignTeacherSubjectVM
+@using (Html.BeginForm())
+{
+    <h2>AssignTeacherSubject</h2>
+    <div class="row">
+        <div class="col-lg-2">
+            <div class="form-group">
+                @Html.LabelFor(x => Model.Teachers, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.DropDownListFor(x => Model.faculty_id, new SelectList(Model.Teachers, "Value", "Text"), htmlAttributes: new { @class = "form-control", id = "Teacher" })
+                    @Html.ValidationMessageFor(x => x.faculty_id, "", new { @class = "text-danger" })
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-2">
+            <div class="form-group">
+                @Html.LabelFor(x => Model.Courses, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.DropDownListFor(x => Model.course_name, new SelectList(Model.Courses, "Value", "Text"), htmlAttributes: new { @class = "form-control", id = "Course" })
+                    @Html.ValidationMessageFor(x => x.course_name, "", new { @class = "text-danger" })
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-2">
+            <div class="form-group">
+                @Html.LabelFor(x => Model.Classes, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.DropDownListFor(x => Model.class_id, new SelectList(Model.Classes, "Value", "Text"), htmlAttributes: new { @class = "form-control", id = "Class" })
+                    @Html.ValidationMessageFor(x => x.class_id, "", new { @class = "text-danger" })
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-2">
+            <div class="form-group">
+                @Html.LabelFor(x => Model.Subjects, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.DropDownListFor(x => Model.subject_code, new SelectList(Model.Subjects, "Value", "Text"), htmlAttributes: new { @class = "form-control", id = "Subject" })
+                    @Html.ValidationMessageFor(x => x.subject_code, "", new { @class = "text-danger" })
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-lg-12">
+            @{
+                Html.RenderPartial("_ListTeacherTeachesSubject", Model.Teaches);
+            }
+        </div>
+        .
+    </div>
+    <div class="row">
+        <div class="col-lg-6 text-center">
+            <input type="submit" value="Assign Teacher Subject" class="btn btn-default" />
+        </div>
+        <div class="col-lg-6 text-center">
+            @{ var c = Request.QueryString["class"];
+                var t = Request.QueryString["teacher"];
+                var s = Request.QueryString["subject"];
+            }
+            @if ((c != null) && (t != null) && (s != null))
+            {
+                @Html.ActionLink("Delete", "DeleteTeacherSubjectRelation", "Teachers", new { c, t, s }, new { @class = "btn btn-danger" })
+            }
+        </div>
+    </div>
+                }
+    <script>
+    $('#Course').change(function () {
+            var selectedCourse = $("#Course").val();
+            var classSelect = $('#Class');
+        classSelect.empty();
+        if (selectedCourse != null && selectedCourse != '') {
+            $.getJSON('@Url.Action("getClassesImCoordinatingByCourse")', { course: selectedCourse }, function (classes) {
+                        if (classes != null && !jQuery.isEmptyObject(classes))
+                        {
+                            $.each(classes, function (index, classItem) {
+                                classSelect.append($('<option/>', {
+                                    value: classItem.Value,
+                                    text: classItem.Text
+                                }));
+                            });
+                        }
+                    });
+                }
+    });
+    </script>

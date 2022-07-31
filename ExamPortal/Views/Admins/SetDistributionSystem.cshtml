@@ -1,0 +1,122 @@
+﻿@model ExamPortal.Models.ViewModels.SetDistributionSystemVM
+@{
+    ViewBag.Title = "Set Distribution System";
+}
+<style>
+    .grid-container {
+        display: grid;
+        grid-template-columns:@for (int i = 0; i < Model.ColCount; i++) {@MvcHtmlString.Create(" auto")};
+        background-color: #2196F3;
+        padding: 10px;
+        }
+
+    .grid-item {
+        background-color: rgba(255, 255, 255, 0.8);
+        border: 1px solid rgba(0, 0, 0, 0.8);
+        padding: 20px;
+        font-size: 30px;
+        text-align: center;
+    }
+</style>
+
+<div class="row">
+    <div class="col-lg-9">
+        <h2>Set Distribution System</h2>
+    </div>
+    <div class="col-lg-3">
+        <h2>Admin</h2>
+    </div>
+</div>
+<div class="row">
+    <div class="col-lg-6">
+        <div class="row">
+            <div class="col-lg-4">
+                <strong>Detected Grid</strong>
+            </div>
+            <div class="col-lg-8">
+                Note: IPv4 Settings
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="grid-container">
+                    @foreach (var item in Model.IPs)
+                    {
+                    <div class="grid-item">@Html.DisplayFor(modelItem=>item)</div>
+                    }
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-lg-6">
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="well well-sm">
+                    <strong>
+                        Note:
+                    </strong> Confusion(?) happens when on the older seats when two or more seats
+                    share the same IP address. When changing IP address of a seat, this may happen
+                    to other seats which were refering to changed IP address.
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-lg-offset-2 col-lg-10">
+                <dl class="dl-horizontal">
+                    <dt>
+                        Min IP address found:
+                    </dt>
+
+                    <dd>
+                        @Html.DisplayFor(model => model.MinIPv4)
+                    </dd>
+
+                    <dt>
+                        Max IP address found:
+                    </dt>
+
+                    <dd>
+                        @Html.DisplayFor(model => model.MaxIPv4)
+                    </dd>
+                </dl>
+                <dl class="dl-horizontal">
+                    <dt>
+                        Enter Rows:
+                    </dt>
+
+                    <dd>
+                        @Html.EditorFor(model => model.RowCount)
+                    </dd>
+
+
+                    <dt>
+                        Enter Cols:
+                    </dt>
+
+                    <dd>
+                        @Html.EditorFor(model => model.ColCount)
+                    </dd>
+                </dl>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-lg-5">
+                <strong>IP address of selected seat: </strong><br />
+                Complete IP address
+            </div>
+            <div class="col-lg-7">
+                @Html.ActionLink("Change IP address", "changeIPaddress","Admins", new { IPs = ips }, new { htmlAttributes = new { @class = "btn btn-warning" } })<br />
+                @Html.DropDownListFor(m => m.IPs, Model.IPaddresses,"Select IP address")
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="btn btn-group">
+                    @Html.ActionLink("Disable", "DisableIPs","Admins", new { IPs = ips }, new { htmlAttributes = new { @class = "btn btn-warning" } })
+                    @Html.ActionLink("Save and Apply", "SaveNApplyGrid","Admins", new { }, new { htmlAttributes = new { @class = "btn btn-primary" } })
+                    @Html.ActionLink("Reset Grid", "ResetGrid","Admins", new { }, new { htmlAttributes = new { @class = "btn btn-danger" } })
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,113 @@
+﻿@model ExamPortal.Models.Student
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>Student</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.unique_name)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.unique_name)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.parents_phone)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.parents_phone)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.mobile)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.mobile)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.photo)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.photo)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.enrollment_no)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.enrollment_no)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.residential_address)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.residential_address)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.permanent_address)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.permanent_address)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.fathers_name)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.fathers_name)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.mothers_name)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.mothers_name)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.adhar_no)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.adhar_no)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.blood_group)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.blood_group)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.dob)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.dob)
+        </dd>
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.scholar_no }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

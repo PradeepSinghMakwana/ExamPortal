@@ -1,0 +1,108 @@
+﻿@using ExamPortal.Models
+@model IEnumerable<Test>
+
+@if (((List<string>)Session["role"]).Contains("teacher"))
+{
+    if ((ViewData["multiSelect"] == null) || ((bool)ViewData["multiSelect"] == false))
+    {
+        <p>
+            @Html.ActionLink("Create New", "CreateTest", "Teachers", new { }, new { @class = "btn btn-primary" })
+        </p>
+    }
+}
+<div>
+    <table class="table">
+        <tr>
+            @if ((ViewData["multiSelect"] != null) && ((bool)ViewData["multiSelect"] == true))
+            {
+                <th>Select</th>
+            }
+            <th>
+                @Html.DisplayNameFor(model => model.test_id)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.test_name)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.description)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Subject.subject_name)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Teacher.faculty_name)
+            </th>
+            <th>
+                Date
+            </th>
+            <th>
+                Start Time
+            </th>
+            <th>
+                End Time
+            </th>
+            @if (((List<string>)Session["role"]).Contains("teacher") || ((List<string>)Session["role"]).Contains("admin"))
+            {
+                <th></th>
+            }
+        </tr>
+        @foreach (var item in Model)
+        {
+            <tr>
+                @if ((ViewData["multiSelect"] != null) && ((bool)ViewData["multiSelect"] == true))
+                {
+                    <td><input type="checkbox" name="selectedTests" value="@item.test_id" /></td>
+                }
+                <td>
+                    @Html.DisplayFor(modelItem => item.test_id)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.test_name)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.description)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Subject.subject_name)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Teacher.faculty_name)
+                </td>
+                <td>
+                    @{string date = item.start_datetime.ToShortDateString();
+                        @MvcHtmlString.Create(date);}
+                </td>
+                <td>
+                    @{string startTime = item.start_datetime.ToShortTimeString();
+                        @MvcHtmlString.Create(startTime);}
+                </td>
+                <td>
+                    @{string endTime = item.end_datetime.ToShortTimeString();
+                        @MvcHtmlString.Create(endTime);
+                    }
+                </td>
+                @if (((List<string>)Session["role"]).Contains("admin") || ((int)Session["facultyId"] == item.Teacher.faculty_id))
+                {
+                    if ((ViewData["multiSelect"] == null) || ((bool)ViewData["multiSelect"] == false))
+                    {
+                    <td>
+                        @Html.ActionLink("Edit", "EditTest", "Teachers", new { id = item.test_id }, new { @class = "btn btn-primary" }) |
+                        @Html.ActionLink("Delete", "DeleteTest", "Admins", new { id = item.test_id }, new { @class = "btn btn-danger" })
+                    </td>
+                    }
+                }
+                else if (((List<string>)Session["role"]).Contains("teacher"))
+                {
+                    if ((ViewData["multiSelect"] == null) || ((bool)ViewData["multiSelect"] == false))
+                    {
+                    <td>
+                        @Html.ActionLink("Modify and Assign as Temporary Test", "ModifyNAssignTempTest", "Teachers", new { id = item.test_id }, new { @class = "btn btn-primary" })
+                    </td>
+                    }
+                }
+            </tr>
+        }
+
+    </table>
+
+</div>

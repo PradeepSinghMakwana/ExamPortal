@@ -1,0 +1,114 @@
+﻿@model ExamPortal.Models.Question
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>Question</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.question_text)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.question_text)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.option1)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.option1)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.option2)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.option2)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.option3)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.option3)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.option4)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.option4)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.is_option1_correct)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.is_option1_correct)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.is_option2_correct)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.is_option2_correct)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.is_option3_correct)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.is_option3_correct)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.is_option4_correct)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.is_option4_correct)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.topic)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.topic)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.difficulty_level)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.difficulty_level)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.creator)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.creator)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.q_id }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

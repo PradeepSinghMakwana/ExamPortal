@@ -1,0 +1,88 @@
+﻿@model ExamPortal.Models.ViewModels.AddStudentLoginCoordinatorVM
+
+@{
+    ViewBag.Title = "Add New Student Login";
+}
+
+<h2>Create</h2>
+<script>
+    function showPassword(s) {
+        $("#password_" + s).toggleClass("hidden");
+    }
+</script>
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+
+    <div class="form-horizontal">
+        <h4>Student</h4>
+        <hr />
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        <div class="form-group">
+            @Html.LabelFor(model => model.username, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.username, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.username, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.password, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.password, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.password, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="Create" class="btn btn-default" />
+            </div>
+        </div>
+    </div>
+}
+<div class="row">
+    <div class="col-lg-12">
+        <h3>Unregistered Students</h3>
+        <table class="table table-bordered table-hover">
+            <thead>
+                <tr>
+                    <th>
+                        Id
+                    </th>
+                    <th>
+                        Username
+                    </th>
+                    <th>
+                        Password
+                    </th>
+                    <th>
+                        Delete
+                    </th>
+                </tr>
+            </thead>
+            @foreach (var item in Model.UnregisteredStudents)
+            {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.user_id)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.username)
+                </td>
+                <td>
+                    <span class="glyphicon glyphicon-eye-open" onclick="showPassword(@item.user_id)"></span>
+                    <span class="badge hidden" id="password_@item.user_id">@item.password.Trim(' ')</span>
+                </td>
+                <th>
+                    <span class="glyphicon glyphicon-remove-sign"></span>
+                </th>
+            </tr>
+            }
+
+        </table>
+    </div>
+</div>
+<div>
+    @Html.ActionLink("Back", "Index", "Coordinators", new { }, new { @class = "btn btn-primary" })
+</div>

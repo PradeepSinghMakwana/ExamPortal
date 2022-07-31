@@ -1,0 +1,51 @@
+﻿@model IEnumerable<ExamPortal.Models.Test>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.test_name)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.description)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.start_datetime)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.end_datetime)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.test_name)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.description)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.start_datetime)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.end_datetime)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.test_id }) |
+            @Html.ActionLink("Details", "Details", new { id=item.test_id }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.test_id })
+        </td>
+    </tr>
+}
+
+</table>

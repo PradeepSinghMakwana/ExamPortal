@@ -1,0 +1,25 @@
+﻿@model IEnumerable<ExamPortal.Models.ViewModels.QuestionVM>
+<div class="list-group">
+    @{ int? selectedId = null; }
+    @if(Request.QueryString["questionId"] != null)
+    {
+    selectedId = Convert.ToInt32(Request.QueryString["questionId"].ToString());
+    }
+    @foreach (var item in Model)
+    {
+        string activeClass = "";
+        string correctColor = "green";
+        if (selectedId == item.q_id)
+        {
+            activeClass = "active";
+            correctColor = "yellow";
+        }
+        <a href="?questionId=@item.q_id" data-subject="@item.Subject.subject_code" data-test="@item.strTestIds" class="list-group-item @activeClass">
+            <h4 class="list-group-item-heading">@Html.DisplayFor(modelItem => item.question_text)</h4>
+            <p class="list-group-item-text" style="@(item.is_option1_correct ? "color:"+correctColor+";font-weight:bold;" : "")display:@(item.use_option1 ? "block" : "none")">@Html.DisplayFor(modelItem => item.option1)</p>
+            <p class="list-group-item-text" style="@(item.is_option2_correct ? "color:"+correctColor+";font-weight:bold;" : "")display:@(item.use_option2 ? "block" : "none")">@Html.DisplayFor(modelItem => item.option2)</p>
+            <p class="list-group-item-text" style="@(item.is_option3_correct ? "color:"+correctColor+";font-weight:bold;" : "")display:@(item.use_option3 ? "block" : "none")">@Html.DisplayFor(modelItem => item.option3)</p>
+            <p class="list-group-item-text" style="@(item.is_option4_correct ? "color:"+correctColor+";font-weight:bold;" : "")display:@(item.use_option4 ? "block" : "none")">@Html.DisplayFor(modelItem => item.option4)</p>
+        </a>
+    }
+</div>

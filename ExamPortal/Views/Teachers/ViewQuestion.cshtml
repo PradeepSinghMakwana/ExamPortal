@@ -1,0 +1,19 @@
+﻿@model IEnumerable<ExamPortal.Models.Question>
+@{
+    ViewBag.Title = "View Question";
+}
+<script src="//code.jquery.com/jquery-2.1.1.min.js" type="text/javascript"></script>
+<script>
+    $(function () {
+        $("#right-sidebar .list-group").find("a").removeClass('active');
+        $('#right-sidebar .list-group a:contains("View Questions")').addClass("active");
+    });
+</script>
+    <div class="row">
+        <div class="col-lg-12">
+            <h2>View Questions</h2>
+            @{
+                Html.RenderPartial("_ViewQuestion", Model);
+            }
+        </div>
+    </div>

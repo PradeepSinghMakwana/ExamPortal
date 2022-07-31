@@ -1,0 +1,96 @@
+﻿
+@{
+    ViewBag.Title = "Test Result";
+}
+@model ExamPortal.Models.ViewModels.StudentTestResultVM
+<style>
+    .block .glyphicon-ok {
+        color: green;
+    }
+
+    .marked-for-review {
+        background-color: cornflowerblue;
+    }
+</style>
+<h2>TestResult</h2>
+<div class="container">
+    <div class="row">
+        <div class="col-lg-4">
+            <h3>@Model.test_name</h3>
+        </div>
+        <div class="col-lg-8">
+            <p>
+                <strong>Note:</strong>
+                Correct is shown only for options that you have chosen and are found correct.<br />
+                This way correct is shown to boost your confidence level.
+            </p>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="block">
+                @foreach (var item in Model.testResults)
+                {
+                    <div class="block@(item.is_marked_for_review ? " marked-for-review" : "";)">
+                        <div class="row">
+                            <div class="col-lg-2">
+                                @Html.DisplayFor(modelItem => item.q_virtual_no)
+                            </div>
+                            <div class="col-lg-10">
+                                @Html.DisplayFor(modelItem => item.question_text)
+                            </div>
+                        </div>
+                        @if (item.use_option1)
+                        {
+                            <div class="row">
+                                <div class="col-lg-2">
+                                    <i class="glyphicon @((item.is_student_selected_option1 && item.is_option1_correct) ? " glyphicon-ok" : "";)"></i>
+                                </div>
+                                <div class="col-lg-10">
+                                    @Html.CheckBoxFor(modelItem => item.is_student_selected_option1)
+                                    @Html.DisplayFor(modelItem => item.option1)
+                                </div>
+                            </div>
+                        }
+                        @if (item.use_option2)
+                        {
+                            <div class="row">
+                                <div class="col-lg-2">
+                                    <i class="glyphicon @((item.is_student_selected_option2 && item.is_option2_correct) ? " glyphicon-ok" : "";)"></i>
+                                </div>
+                                <div class="col-lg-10">
+                                    @Html.CheckBoxFor(modelItem => item.is_student_selected_option2)
+                                    @Html.DisplayFor(modelItem => item.option2)
+                                </div>
+                            </div>
+                        }
+                        @if (item.use_option3)
+                        {
+                            <div class="row">
+                                <div class="col-lg-2">
+                                    <i class="glyphicon @((item.is_student_selected_option3 && item.is_option3_correct) ? " glyphicon-ok" : "";)"></i>
+                                </div>
+                                <div class="col-lg-10">
+                                    @Html.CheckBoxFor(modelItem => item.is_student_selected_option3)
+                                    @Html.DisplayFor(modelItem => item.option3)
+                                </div>
+                            </div>
+                        }
+                        @if (item.use_option4)
+                        {
+                            <div class="row">
+                                <div class="col-lg-2">
+                                    <i class="glyphicon @((item.is_student_selected_option4 && item.is_option4_correct) ? " glyphicon-ok" : "";)"></i>
+                                </div>
+                                <div class="col-lg-10">
+                                    @Html.CheckBoxFor(modelItem => item.is_student_selected_option4)
+                                    @Html.DisplayFor(modelItem => item.option4)
+                                </div>
+                            </div>
+                        }
+                    </div>
+                }
+            </div>
+        </div>
+    </div>
+</div>

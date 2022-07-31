@@ -1,0 +1,384 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="ExamPortalModelStoreContainer" CdmEntityContainer="ExamPortalEntities">
+    <FunctionImportMapping FunctionImportName="getUnregisteredTests" FunctionName="ExamPortalModel.Store.getUnregisteredTests">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="ExamPortalModel.getUnregisteredTests_Result">
+          <ScalarProperty Name="test_id" ColumnName="test_id" />
+          <ScalarProperty Name="test_name" ColumnName="test_name" />
+          <ScalarProperty Name="subject_name" ColumnName="subject_name" />
+          <ScalarProperty Name="creator" ColumnName="creator" />
+          <ScalarProperty Name="date" ColumnName="date" />
+          <ScalarProperty Name="start_time" ColumnName="start_time" />
+          <ScalarProperty Name="end_time" ColumnName="end_time" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <EntitySetMapping Name="Classes">
+      <EntityTypeMapping TypeName="ExamPortalModel.Class">
+        <MappingFragment StoreEntitySet="Class">
+          <ScalarProperty Name="class_id" ColumnName="class_id" />
+          <ScalarProperty Name="semester" ColumnName="semester" />
+          <ScalarProperty Name="year" ColumnName="year" />
+          <ScalarProperty Name="class_coordinator" ColumnName="class_coordinator" />
+          <ScalarProperty Name="course_name" ColumnName="course_name" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Courses">
+      <EntityTypeMapping TypeName="ExamPortalModel.Course">
+        <MappingFragment StoreEntitySet="Course">
+          <ScalarProperty Name="course_name" ColumnName="course_name" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Logers">
+      <EntityTypeMapping TypeName="ExamPortalModel.Loger">
+        <MappingFragment StoreEntitySet="Loger">
+          <ScalarProperty Name="log_id" ColumnName="log_id" />
+          <ScalarProperty Name="log_datetime" ColumnName="log_datetime" />
+          <ScalarProperty Name="category" ColumnName="category" />
+          <ScalarProperty Name="description" ColumnName="description" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Questions">
+      <EntityTypeMapping TypeName="ExamPortalModel.Question">
+        <MappingFragment StoreEntitySet="Question">
+          <ScalarProperty Name="creator" ColumnName="creator" />
+          <ScalarProperty Name="difficulty_level" ColumnName="difficulty_level" />
+          <ScalarProperty Name="topic" ColumnName="topic" />
+          <ScalarProperty Name="is_option4_correct" ColumnName="is_option4_correct" />
+          <ScalarProperty Name="is_option3_correct" ColumnName="is_option3_correct" />
+          <ScalarProperty Name="is_option2_correct" ColumnName="is_option2_correct" />
+          <ScalarProperty Name="is_option1_correct" ColumnName="is_option1_correct" />
+          <ScalarProperty Name="option4" ColumnName="option4" />
+          <ScalarProperty Name="option3" ColumnName="option3" />
+          <ScalarProperty Name="option2" ColumnName="option2" />
+          <ScalarProperty Name="option1" ColumnName="option1" />
+          <ScalarProperty Name="question_text" ColumnName="question_text" />
+          <ScalarProperty Name="subject_code" ColumnName="subject_code" />
+          <ScalarProperty Name="q_id" ColumnName="q_id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Registered_Candidates">
+      <EntityTypeMapping TypeName="ExamPortalModel.Registered_Candidates">
+        <MappingFragment StoreEntitySet="Registered_Candidates">
+          <ScalarProperty Name="marks" ColumnName="marks" />
+          <ScalarProperty Name="approved" ColumnName="approved" />
+          <ScalarProperty Name="scholar_no" ColumnName="scholar_no" />
+          <ScalarProperty Name="test_id" ColumnName="test_id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Students">
+      <EntityTypeMapping TypeName="ExamPortalModel.Student">
+        <MappingFragment StoreEntitySet="Student">
+          <ScalarProperty Name="is_valid_student" ColumnName="is_valid_student" />
+          <ScalarProperty Name="user_id" ColumnName="user_id" />
+          <ScalarProperty Name="class_id" ColumnName="class_id" />
+          <ScalarProperty Name="dob" ColumnName="dob" />
+          <ScalarProperty Name="blood_group" ColumnName="blood_group" />
+          <ScalarProperty Name="adhar_no" ColumnName="adhar_no" />
+          <ScalarProperty Name="mothers_name" ColumnName="mothers_name" />
+          <ScalarProperty Name="fathers_name" ColumnName="fathers_name" />
+          <ScalarProperty Name="permanent_address" ColumnName="permanent_address" />
+          <ScalarProperty Name="residential_address" ColumnName="residential_address" />
+          <ScalarProperty Name="enrollment_no" ColumnName="enrollment_no" />
+          <ScalarProperty Name="photo" ColumnName="photo" />
+          <ScalarProperty Name="mobile" ColumnName="mobile" />
+          <ScalarProperty Name="parents_phone" ColumnName="parents_phone" />
+          <ScalarProperty Name="unique_name" ColumnName="unique_name" />
+          <ScalarProperty Name="scholar_no" ColumnName="scholar_no" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Student_10th_Qualification">
+      <EntityTypeMapping TypeName="ExamPortalModel.Student_10th_Qualification">
+        <MappingFragment StoreEntitySet="Student_10th_Qualification">
+          <ScalarProperty Name="percent_marks" ColumnName="percent_marks" />
+          <ScalarProperty Name="subject_code" ColumnName="subject_code" />
+          <ScalarProperty Name="scholar_no" ColumnName="scholar_no" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Student_12th_Qualification">
+      <EntityTypeMapping TypeName="ExamPortalModel.Student_12th_Qualification">
+        <MappingFragment StoreEntitySet="Student_12th_Qualification">
+          <ScalarProperty Name="percent_marks" ColumnName="percent_marks" />
+          <ScalarProperty Name="subject_code" ColumnName="subject_code" />
+          <ScalarProperty Name="scholar_no" ColumnName="scholar_no" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Student_Current_Qualification">
+      <EntityTypeMapping TypeName="ExamPortalModel.Student_Current_Qualification">
+        <MappingFragment StoreEntitySet="Student_Current_Qualification">
+          <ScalarProperty Name="last_appeared" ColumnName="last_appeared" />
+          <ScalarProperty Name="marks" ColumnName="marks" />
+          <ScalarProperty Name="subject_code" ColumnName="subject_code" />
+          <ScalarProperty Name="scholar_no" ColumnName="scholar_no" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Subjects">
+      <EntityTypeMapping TypeName="ExamPortalModel.Subject">
+        <MappingFragment StoreEntitySet="Subject">
+          <ScalarProperty Name="subject_name" ColumnName="subject_name" />
+          <ScalarProperty Name="subject_code" ColumnName="subject_code" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Subjects_In_10th">
+      <EntityTypeMapping TypeName="ExamPortalModel.Subjects_In_10th">
+        <MappingFragment StoreEntitySet="Subjects_In_10th">
+          <ScalarProperty Name="subject_name" ColumnName="subject_name" />
+          <ScalarProperty Name="subject_code" ColumnName="subject_code" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Subjects_In_12th">
+      <EntityTypeMapping TypeName="ExamPortalModel.Subjects_In_12th">
+        <MappingFragment StoreEntitySet="Subjects_In_12th">
+          <ScalarProperty Name="subject_name" ColumnName="subject_name" />
+          <ScalarProperty Name="subject_code" ColumnName="subject_code" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Teachers">
+      <EntityTypeMapping TypeName="ExamPortalModel.Teacher">
+        <MappingFragment StoreEntitySet="Teacher">
+          <ScalarProperty Name="served" ColumnName="served" />
+          <ScalarProperty Name="user_id" ColumnName="user_id" />
+          <ScalarProperty Name="mobile" ColumnName="mobile" />
+          <ScalarProperty Name="residential_address" ColumnName="residential_address" />
+          <ScalarProperty Name="blood_group" ColumnName="blood_group" />
+          <ScalarProperty Name="dob" ColumnName="dob" />
+          <ScalarProperty Name="year_post_graduated" ColumnName="year_post_graduated" />
+          <ScalarProperty Name="year_graduated" ColumnName="year_graduated" />
+          <ScalarProperty Name="post_graduate" ColumnName="post_graduate" />
+          <ScalarProperty Name="graduate" ColumnName="graduate" />
+          <ScalarProperty Name="faculty_name" ColumnName="faculty_name" />
+          <ScalarProperty Name="faculty_id" ColumnName="faculty_id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Teaches">
+      <EntityTypeMapping TypeName="ExamPortalModel.Teach">
+        <MappingFragment StoreEntitySet="Teaches">
+          <ScalarProperty Name="subject_code" ColumnName="subject_code" />
+          <ScalarProperty Name="class_id" ColumnName="class_id" />
+          <ScalarProperty Name="faculty_id" ColumnName="faculty_id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Tests">
+      <EntityTypeMapping TypeName="ExamPortalModel.Test">
+        <MappingFragment StoreEntitySet="Test">
+          <ScalarProperty Name="subject_code" ColumnName="subject_code" />
+          <ScalarProperty Name="creator" ColumnName="creator" />
+          <ScalarProperty Name="end_datetime" ColumnName="end_datetime" />
+          <ScalarProperty Name="start_datetime" ColumnName="start_datetime" />
+          <ScalarProperty Name="description" ColumnName="description" />
+          <ScalarProperty Name="test_name" ColumnName="test_name" />
+          <ScalarProperty Name="test_id" ColumnName="test_id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Test_Question">
+      <EntityTypeMapping TypeName="ExamPortalModel.Test_Question">
+        <MappingFragment StoreEntitySet="Test_Question">
+          <ScalarProperty Name="unit" ColumnName="unit" />
+          <ScalarProperty Name="question_id" ColumnName="question_id" />
+          <ScalarProperty Name="test_id" ColumnName="test_id" />
+          <ScalarProperty Name="id" ColumnName="id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="UserRoles">
+      <EntityTypeMapping TypeName="ExamPortalModel.UserRole">
+        <MappingFragment StoreEntitySet="UserRole">
+          <ScalarProperty Name="role" ColumnName="role" />
+          <ScalarProperty Name="user_id" ColumnName="user_id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Student_Test_Record">
+      <EntityTypeMapping TypeName="ExamPortalModel.Student_Test_Record">
+        <MappingFragment StoreEntitySet="Student_Test_Record">
+          <ScalarProperty Name="record_datetime" ColumnName="record_datetime" />
+          <ScalarProperty Name="is_student_selected_option4" ColumnName="is_student_selected_option4" />
+          <ScalarProperty Name="is_student_selected_option3" ColumnName="is_student_selected_option3" />
+          <ScalarProperty Name="is_student_selected_option2" ColumnName="is_student_selected_option2" />
+          <ScalarProperty Name="is_student_selected_option1" ColumnName="is_student_selected_option1" />
+          <ScalarProperty Name="is_option4_correct" ColumnName="is_option4_correct" />
+          <ScalarProperty Name="is_option3_correct" ColumnName="is_option3_correct" />
+          <ScalarProperty Name="is_option2_correct" ColumnName="is_option2_correct" />
+          <ScalarProperty Name="is_option1_correct" ColumnName="is_option1_correct" />
+          <ScalarProperty Name="option4" ColumnName="option4" />
+          <ScalarProperty Name="option3" ColumnName="option3" />
+          <ScalarProperty Name="option2" ColumnName="option2" />
+          <ScalarProperty Name="option1" ColumnName="option1" />
+          <ScalarProperty Name="question_text" ColumnName="question_text" />
+          <ScalarProperty Name="q_virtual_id" ColumnName="q_virtual_id" />
+          <ScalarProperty Name="q_id" ColumnName="q_id" />
+          <ScalarProperty Name="scholar_no" ColumnName="scholar_no" />
+          <ScalarProperty Name="test_id" ColumnName="test_id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="AdminLogins">
+      <EntityTypeMapping TypeName="ExamPortalModel.AdminLogin">
+        <MappingFragment StoreEntitySet="AdminLogin">
+          <ScalarProperty Name="role" ColumnName="role" />
+          <ScalarProperty Name="password" ColumnName="password" />
+          <ScalarProperty Name="username" ColumnName="username" />
+          <ScalarProperty Name="user_id" ColumnName="user_id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="ClassAdminDesks">
+      <EntityTypeMapping TypeName="ExamPortalModel.ClassAdminDesk">
+        <MappingFragment StoreEntitySet="ClassAdminDesk">
+          <ScalarProperty Name="class_id" ColumnName="class_id" />
+          <ScalarProperty Name="semester" ColumnName="semester" />
+          <ScalarProperty Name="year" ColumnName="year" />
+          <ScalarProperty Name="class_coordinator" ColumnName="class_coordinator" />
+          <ScalarProperty Name="course_name" ColumnName="course_name" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="CourseAdminDesks">
+      <EntityTypeMapping TypeName="ExamPortalModel.CourseAdminDesk">
+        <MappingFragment StoreEntitySet="CourseAdminDesk">
+          <ScalarProperty Name="course_name" ColumnName="course_name" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="StudentLogins">
+      <EntityTypeMapping TypeName="ExamPortalModel.StudentLogin">
+        <MappingFragment StoreEntitySet="StudentLogin">
+          <ScalarProperty Name="role" ColumnName="role" />
+          <ScalarProperty Name="scholar_no" ColumnName="scholar_no" />
+          <ScalarProperty Name="password" ColumnName="password" />
+          <ScalarProperty Name="username" ColumnName="username" />
+          <ScalarProperty Name="user_id" ColumnName="user_id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="SubjectAdminDesks">
+      <EntityTypeMapping TypeName="ExamPortalModel.SubjectAdminDesk">
+        <MappingFragment StoreEntitySet="SubjectAdminDesk">
+          <ScalarProperty Name="subject_name" ColumnName="subject_name" />
+          <ScalarProperty Name="subject_code" ColumnName="subject_code" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="TeacherLogins">
+      <EntityTypeMapping TypeName="ExamPortalModel.TeacherLogin">
+        <MappingFragment StoreEntitySet="TeacherLogin">
+          <ScalarProperty Name="faculty_id" ColumnName="faculty_id" />
+          <ScalarProperty Name="role" ColumnName="role" />
+          <ScalarProperty Name="password" ColumnName="password" />
+          <ScalarProperty Name="username" ColumnName="username" />
+          <ScalarProperty Name="user_id" ColumnName="user_id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="UnapprovedResults">
+      <EntityTypeMapping TypeName="ExamPortalModel.UnapprovedResult">
+        <MappingFragment StoreEntitySet="UnapprovedResults">
+          <ScalarProperty Name="scholar_no" ColumnName="scholar_no" />
+          <ScalarProperty Name="marks" ColumnName="marks" />
+          <ScalarProperty Name="approved" ColumnName="approved" />
+          <ScalarProperty Name="test_name" ColumnName="test_name" />
+          <ScalarProperty Name="photo" ColumnName="photo" />
+          <ScalarProperty Name="subject_name" ColumnName="subject_name" />
+          <ScalarProperty Name="creator" ColumnName="creator" />
+          <ScalarProperty Name="course_name" ColumnName="course_name" />
+          <ScalarProperty Name="year" ColumnName="year" />
+          <ScalarProperty Name="semester" ColumnName="semester" />
+          <ScalarProperty Name="unique_name" ColumnName="unique_name" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="UnassignedTests">
+      <EntityTypeMapping TypeName="ExamPortalModel.UnassignedTest">
+        <MappingFragment StoreEntitySet="UnassignedTest">
+          <ScalarProperty Name="creator" ColumnName="creator" />
+          <ScalarProperty Name="end_time" ColumnName="end_time" />
+          <ScalarProperty Name="start_time" ColumnName="start_time" />
+          <ScalarProperty Name="date" ColumnName="date" />
+          <ScalarProperty Name="subject_name" ColumnName="subject_name" />
+          <ScalarProperty Name="description" ColumnName="description" />
+          <ScalarProperty Name="test_name" ColumnName="test_name" />
+          <ScalarProperty Name="test_id" ColumnName="test_id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="UnregisteredTests">
+      <EntityTypeMapping TypeName="ExamPortalModel.UnregisteredTest">
+        <MappingFragment StoreEntitySet="UnregisteredTest">
+          <ScalarProperty Name="registered" ColumnName="registered" />
+          <ScalarProperty Name="scholar_no" ColumnName="scholar_no" />
+          <ScalarProperty Name="subject_name" ColumnName="subject_name" />
+          <ScalarProperty Name="end_time" ColumnName="end_time" />
+          <ScalarProperty Name="start_time" ColumnName="start_time" />
+          <ScalarProperty Name="date" ColumnName="date" />
+          <ScalarProperty Name="faculty_name" ColumnName="faculty_name" />
+          <ScalarProperty Name="description" ColumnName="description" />
+          <ScalarProperty Name="test_name" ColumnName="test_name" />
+          <ScalarProperty Name="test_id" ColumnName="test_id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <AssociationSetMapping Name="Assigned_Test" TypeName="ExamPortalModel.Assigned_Test" StoreEntitySet="Assigned_Test">
+      <EndProperty Name="Test">
+        <ScalarProperty Name="test_id" ColumnName="test_id" />
+      </EndProperty>
+      <EndProperty Name="Student">
+        <ScalarProperty Name="scholar_no" ColumnName="scholar_no" />
+      </EndProperty>
+    </AssociationSetMapping>
+    <EntitySetMapping Name="UserLogins">
+      <EntityTypeMapping TypeName="ExamPortalModel.UserLogin">
+        <MappingFragment StoreEntitySet="UserLogin">
+          <ScalarProperty Name="password" ColumnName="password" />
+          <ScalarProperty Name="username" ColumnName="username" />
+          <ScalarProperty Name="user_id" ColumnName="user_id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="TeacherAdminDesks">
+      <EntityTypeMapping TypeName="ExamPortalModel.TeacherAdminDesk">
+        <MappingFragment StoreEntitySet="TeacherAdminDesk">
+          <ScalarProperty Name="username" ColumnName="username" />
+          <ScalarProperty Name="served" ColumnName="served" />
+          <ScalarProperty Name="is_coordinator" ColumnName="is_coordinator" />
+          <ScalarProperty Name="mobile" ColumnName="mobile" />
+          <ScalarProperty Name="residential_address" ColumnName="residential_address" />
+          <ScalarProperty Name="blood_group" ColumnName="blood_group" />
+          <ScalarProperty Name="dob" ColumnName="dob" />
+          <ScalarProperty Name="year_post_graduated" ColumnName="year_post_graduated" />
+          <ScalarProperty Name="year_graduated" ColumnName="year_graduated" />
+          <ScalarProperty Name="post_graduate" ColumnName="post_graduate" />
+          <ScalarProperty Name="graduate" ColumnName="graduate" />
+          <ScalarProperty Name="faculty_name" ColumnName="faculty_name" />
+          <ScalarProperty Name="faculty_id" ColumnName="faculty_id" />
+          <ScalarProperty Name="user_id" ColumnName="user_id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="TempCreatedTests">
+      <EntityTypeMapping TypeName="ExamPortalModel.TempCreatedTest">
+        <MappingFragment StoreEntitySet="TempCreatedTest">
+          <ScalarProperty Name="unit" ColumnName="unit" />
+          <ScalarProperty Name="q_id" ColumnName="q_id" />
+          <ScalarProperty Name="faculty_id" ColumnName="faculty_id" />
+          <ScalarProperty Name="id" ColumnName="id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>

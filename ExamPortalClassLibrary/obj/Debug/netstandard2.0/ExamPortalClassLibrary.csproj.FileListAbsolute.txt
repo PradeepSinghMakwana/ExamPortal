@@ -1,0 +1,9 @@
+D:\ExamPortal\ExamPortalv2\ExamPortal\ExamPortalClassLibrary\bin\Debug\netstandard2.0\ExamPortalClassLibrary.deps.json
+D:\ExamPortal\ExamPortalv2\ExamPortal\ExamPortalClassLibrary\bin\Debug\netstandard2.0\ExamPortalClassLibrary.dll
+D:\ExamPortal\ExamPortalv2\ExamPortal\ExamPortalClassLibrary\bin\Debug\netstandard2.0\ExamPortalClassLibrary.pdb
+D:\ExamPortal\ExamPortalv2\ExamPortal\ExamPortalClassLibrary\obj\Debug\netstandard2.0\ExamPortalClassLibrary.csproj.CoreCompileInputs.cache
+D:\ExamPortal\ExamPortalv2\ExamPortal\ExamPortalClassLibrary\obj\Debug\netstandard2.0\ExamPortalClassLibrary.AssemblyInfoInputs.cache
+D:\ExamPortal\ExamPortalv2\ExamPortal\ExamPortalClassLibrary\obj\Debug\netstandard2.0\ExamPortalClassLibrary.AssemblyInfo.cs
+D:\ExamPortal\ExamPortalv2\ExamPortal\ExamPortalClassLibrary\obj\Debug\netstandard2.0\ExamPortalClassLibrary.dll
+D:\ExamPortal\ExamPortalv2\ExamPortal\ExamPortalClassLibrary\obj\Debug\netstandard2.0\ExamPortalClassLibrary.pdb
+D:\ExamPortal\ExamPortalv2\ExamPortal\ExamPortalClassLibrary\obj\Debug\netstandard2.0\ExamPortalClassLibrary.csprojAssemblyReference.cache

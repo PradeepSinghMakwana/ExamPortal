@@ -1,0 +1,1000 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="ExamPortalModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2008" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="Assigned_Test">
+    <Key>
+      <PropertyRef Name="test_id" />
+      <PropertyRef Name="scholar_no" />
+    </Key>
+    <Property Name="test_id" Type="int" Nullable="false" />
+    <Property Name="scholar_no" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Class">
+    <Key>
+      <PropertyRef Name="class_id" />
+    </Key>
+    <Property Name="course_name" Type="nvarchar" MaxLength="100" Nullable="false" />
+    <Property Name="class_coordinator" Type="int" Nullable="false" />
+    <Property Name="year" Type="tinyint" Nullable="false" />
+    <Property Name="semester" Type="tinyint" Nullable="false" />
+    <Property Name="class_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Course">
+    <Key>
+      <PropertyRef Name="course_name" />
+    </Key>
+    <Property Name="course_name" Type="nvarchar" MaxLength="100" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Loger">
+    <Key>
+      <PropertyRef Name="log_id" />
+    </Key>
+    <Property Name="description" Type="nvarchar" MaxLength="1000" Nullable="false" />
+    <Property Name="category" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="log_datetime" Type="smalldatetime" Nullable="false" />
+    <Property Name="log_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Question">
+    <Key>
+      <PropertyRef Name="q_id" />
+    </Key>
+    <Property Name="q_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="subject_code" Type="int" Nullable="false" />
+    <Property Name="question_text" Type="nvarchar" MaxLength="500" Nullable="false" />
+    <Property Name="option1" Type="nvarchar" MaxLength="200" />
+    <Property Name="option2" Type="nvarchar" MaxLength="200" />
+    <Property Name="option3" Type="nvarchar" MaxLength="200" />
+    <Property Name="option4" Type="nvarchar" MaxLength="200" />
+    <Property Name="is_option1_correct" Type="bit" />
+    <Property Name="is_option2_correct" Type="bit" />
+    <Property Name="is_option3_correct" Type="bit" />
+    <Property Name="is_option4_correct" Type="bit" />
+    <Property Name="topic" Type="nvarchar" MaxLength="100" />
+    <Property Name="difficulty_level" Type="tinyint" />
+    <Property Name="creator" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Registered_Candidates">
+    <Key>
+      <PropertyRef Name="test_id" />
+      <PropertyRef Name="scholar_no" />
+    </Key>
+    <Property Name="test_id" Type="int" Nullable="false" />
+    <Property Name="scholar_no" Type="int" Nullable="false" />
+    <Property Name="approved" Type="bit" Nullable="false" />
+    <Property Name="marks" Type="numeric" Precision="4" Scale="2" />
+  </EntityType>
+  <EntityType Name="Student">
+    <Key>
+      <PropertyRef Name="scholar_no" />
+    </Key>
+    <Property Name="scholar_no" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="unique_name" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="parents_phone" Type="numeric" Precision="12" Scale="0" Nullable="false" />
+    <Property Name="mobile" Type="numeric" Precision="10" Scale="0" Nullable="false" />
+    <Property Name="photo" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="enrollment_no" Type="nchar" MaxLength="13" />
+    <Property Name="residential_address" Type="nvarchar" MaxLength="200" Nullable="false" />
+    <Property Name="permanent_address" Type="nvarchar" MaxLength="200" Nullable="false" />
+    <Property Name="fathers_name" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="mothers_name" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="adhar_no" Type="numeric" Precision="12" Scale="0" Nullable="false" />
+    <Property Name="blood_group" Type="nvarchar" MaxLength="5" Nullable="false" />
+    <Property Name="dob" Type="date" Nullable="false" />
+    <Property Name="class_id" Type="int" Nullable="false" />
+    <Property Name="user_id" Type="int" Nullable="false" />
+    <Property Name="is_valid_student" Type="bit" />
+  </EntityType>
+  <EntityType Name="Student_10th_Qualification">
+    <Key>
+      <PropertyRef Name="scholar_no" />
+      <PropertyRef Name="subject_code" />
+    </Key>
+    <Property Name="scholar_no" Type="int" Nullable="false" />
+    <Property Name="subject_code" Type="int" Nullable="false" />
+    <Property Name="percent_marks" Type="numeric" Precision="4" Scale="4" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Student_12th_Qualification">
+    <Key>
+      <PropertyRef Name="scholar_no" />
+      <PropertyRef Name="subject_code" />
+    </Key>
+    <Property Name="scholar_no" Type="int" Nullable="false" />
+    <Property Name="subject_code" Type="int" Nullable="false" />
+    <Property Name="percent_marks" Type="numeric" Precision="4" Scale="4" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Student_Current_Qualification">
+    <Key>
+      <PropertyRef Name="scholar_no" />
+      <PropertyRef Name="subject_code" />
+    </Key>
+    <Property Name="scholar_no" Type="int" Nullable="false" />
+    <Property Name="subject_code" Type="int" Nullable="false" />
+    <Property Name="marks" Type="numeric" Precision="4" Scale="2" Nullable="false" />
+    <Property Name="last_appeared" Type="date" Nullable="false" />
+  </EntityType>
+  <!--Errors Found During Generation:
+warning 6002: The table/view 'ExamPortal.dbo.Student_Test_Record' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+  <EntityType Name="Student_Test_Record">
+    <Key>
+      <PropertyRef Name="test_id" />
+      <PropertyRef Name="scholar_no" />
+      <PropertyRef Name="q_id" />
+      <PropertyRef Name="q_virtual_id" />
+      <PropertyRef Name="question_text" />
+      <PropertyRef Name="record_datetime" />
+    </Key>
+    <Property Name="test_id" Type="int" Nullable="false" />
+    <Property Name="scholar_no" Type="int" Nullable="false" />
+    <Property Name="q_id" Type="int" Nullable="false" />
+    <Property Name="q_virtual_id" Type="int" Nullable="false" />
+    <Property Name="question_text" Type="nvarchar" MaxLength="500" Nullable="false" />
+    <Property Name="option1" Type="nvarchar" MaxLength="200" />
+    <Property Name="option2" Type="nvarchar" MaxLength="200" />
+    <Property Name="option3" Type="nvarchar" MaxLength="200" />
+    <Property Name="option4" Type="nvarchar" MaxLength="200" />
+    <Property Name="is_option1_correct" Type="bit" />
+    <Property Name="is_option2_correct" Type="bit" />
+    <Property Name="is_option3_correct" Type="bit" />
+    <Property Name="is_option4_correct" Type="bit" />
+    <Property Name="is_student_selected_option1" Type="bit" />
+    <Property Name="is_student_selected_option2" Type="bit" />
+    <Property Name="is_student_selected_option3" Type="bit" />
+    <Property Name="is_student_selected_option4" Type="bit" />
+    <Property Name="record_datetime" Type="smalldatetime" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Subject">
+    <Key>
+      <PropertyRef Name="subject_code" />
+    </Key>
+    <Property Name="subject_code" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="subject_name" Type="nvarchar" MaxLength="100" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Subjects_In_10th">
+    <Key>
+      <PropertyRef Name="subject_code" />
+    </Key>
+    <Property Name="subject_code" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="subject_name" Type="nvarchar" MaxLength="50" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Subjects_In_12th">
+    <Key>
+      <PropertyRef Name="subject_code" />
+    </Key>
+    <Property Name="subject_code" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="subject_name" Type="nvarchar" MaxLength="50" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Teacher">
+    <Key>
+      <PropertyRef Name="faculty_id" />
+    </Key>
+    <Property Name="faculty_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="faculty_name" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="graduate" Type="nvarchar" MaxLength="200" Nullable="false" />
+    <Property Name="post_graduate" Type="nvarchar" MaxLength="200" />
+    <Property Name="year_graduated" Type="numeric" Precision="5" Scale="0" Nullable="false" />
+    <Property Name="year_post_graduated" Type="numeric" Precision="5" Scale="0" />
+    <Property Name="dob" Type="date" Nullable="false" />
+    <Property Name="blood_group" Type="nvarchar" MaxLength="5" Nullable="false" />
+    <Property Name="residential_address" Type="nvarchar" MaxLength="200" Nullable="false" />
+    <Property Name="mobile" Type="numeric" Precision="10" Scale="0" Nullable="false" />
+    <Property Name="user_id" Type="int" Nullable="false" />
+    <Property Name="served" Type="nvarchar" MaxLength="200" />
+  </EntityType>
+  <EntityType Name="Teaches">
+    <Key>
+      <PropertyRef Name="faculty_id" />
+      <PropertyRef Name="class_id" />
+      <PropertyRef Name="subject_code" />
+    </Key>
+    <Property Name="faculty_id" Type="int" Nullable="false" />
+    <Property Name="class_id" Type="int" Nullable="false" />
+    <Property Name="subject_code" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="TempCreatedTest">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="faculty_id" Type="int" Nullable="false" />
+    <Property Name="q_id" Type="int" Nullable="false" />
+    <Property Name="unit" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Test">
+    <Key>
+      <PropertyRef Name="test_id" />
+    </Key>
+    <Property Name="test_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="test_name" Type="nvarchar" MaxLength="100" Nullable="false" />
+    <Property Name="description" Type="nvarchar" MaxLength="200" />
+    <Property Name="start_datetime" Type="smalldatetime" Nullable="false" />
+    <Property Name="end_datetime" Type="smalldatetime" Nullable="false" />
+    <Property Name="creator" Type="int" Nullable="false" />
+    <Property Name="subject_code" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Test_Question">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="test_id" Type="int" Nullable="false" />
+    <Property Name="question_id" Type="int" Nullable="false" />
+    <Property Name="unit" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="UserLogin">
+    <Key>
+      <PropertyRef Name="user_id" />
+    </Key>
+    <Property Name="user_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="username" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="password" Type="nchar" MaxLength="50" Nullable="false" />
+  </EntityType>
+  <EntityType Name="UserRole">
+    <Key>
+      <PropertyRef Name="user_id" />
+      <PropertyRef Name="role" />
+    </Key>
+    <Property Name="user_id" Type="int" Nullable="false" />
+    <Property Name="role" Type="nvarchar" MaxLength="50" Nullable="false" />
+  </EntityType>
+  <!--Errors Found During Generation:
+warning 6002: The table/view 'ExamPortal.dbo.AdminLogin' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+  <EntityType Name="AdminLogin">
+    <Key>
+      <PropertyRef Name="user_id" />
+      <PropertyRef Name="username" />
+      <PropertyRef Name="password" />
+      <PropertyRef Name="role" />
+    </Key>
+    <Property Name="user_id" Type="int" Nullable="false" />
+    <Property Name="username" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="password" Type="nchar" MaxLength="50" Nullable="false" />
+    <Property Name="role" Type="nvarchar" MaxLength="50" Nullable="false" />
+  </EntityType>
+  <!--Errors Found During Generation:
+warning 6002: The table/view 'ExamPortal.dbo.ClassAdminDesk' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+  <EntityType Name="ClassAdminDesk">
+    <Key>
+      <PropertyRef Name="course_name" />
+      <PropertyRef Name="class_coordinator" />
+      <PropertyRef Name="year" />
+      <PropertyRef Name="semester" />
+      <PropertyRef Name="class_id" />
+    </Key>
+    <Property Name="course_name" Type="nvarchar" MaxLength="100" Nullable="false" />
+    <Property Name="class_coordinator" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="year" Type="tinyint" Nullable="false" />
+    <Property Name="semester" Type="tinyint" Nullable="false" />
+    <Property Name="class_id" Type="int" Nullable="false" />
+  </EntityType>
+  <!--Errors Found During Generation:
+warning 6002: The table/view 'ExamPortal.dbo.CourseAdminDesk' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+  <EntityType Name="CourseAdminDesk">
+    <Key>
+      <PropertyRef Name="course_name" />
+    </Key>
+    <Property Name="course_name" Type="nvarchar" MaxLength="100" Nullable="false" />
+  </EntityType>
+  <!--Errors Found During Generation:
+warning 6002: The table/view 'ExamPortal.dbo.StudentLogin' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+  <EntityType Name="StudentLogin">
+    <Key>
+      <PropertyRef Name="user_id" />
+      <PropertyRef Name="username" />
+      <PropertyRef Name="password" />
+      <PropertyRef Name="scholar_no" />
+      <PropertyRef Name="role" />
+    </Key>
+    <Property Name="user_id" Type="int" Nullable="false" />
+    <Property Name="username" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="password" Type="nchar" MaxLength="50" Nullable="false" />
+    <Property Name="scholar_no" Type="int" Nullable="false" />
+    <Property Name="role" Type="nvarchar" MaxLength="50" Nullable="false" />
+  </EntityType>
+  <!--Errors Found During Generation:
+warning 6002: The table/view 'ExamPortal.dbo.SubjectAdminDesk' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+  <EntityType Name="SubjectAdminDesk">
+    <Key>
+      <PropertyRef Name="subject_code" />
+      <PropertyRef Name="subject_name" />
+    </Key>
+    <Property Name="subject_code" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="subject_name" Type="nvarchar" MaxLength="100" Nullable="false" />
+  </EntityType>
+  <!--Errors Found During Generation:
+warning 6002: The table/view 'ExamPortal.dbo.TeacherAdminDesk' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+  <EntityType Name="TeacherAdminDesk">
+    <Key>
+      <PropertyRef Name="user_id" />
+      <PropertyRef Name="faculty_id" />
+      <PropertyRef Name="faculty_name" />
+      <PropertyRef Name="graduate" />
+      <PropertyRef Name="year_graduated" />
+      <PropertyRef Name="dob" />
+      <PropertyRef Name="blood_group" />
+      <PropertyRef Name="residential_address" />
+      <PropertyRef Name="mobile" />
+      <PropertyRef Name="is_coordinator" />
+      <PropertyRef Name="username" />
+    </Key>
+    <Property Name="user_id" Type="int" Nullable="false" />
+    <Property Name="faculty_id" Type="int" Nullable="false" />
+    <Property Name="faculty_name" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="graduate" Type="nvarchar" MaxLength="200" Nullable="false" />
+    <Property Name="post_graduate" Type="nvarchar" MaxLength="200" />
+    <Property Name="year_graduated" Type="numeric" Precision="5" Scale="0" Nullable="false" />
+    <Property Name="year_post_graduated" Type="numeric" Precision="5" Scale="0" />
+    <Property Name="dob" Type="date" Nullable="false" />
+    <Property Name="blood_group" Type="nvarchar" MaxLength="5" Nullable="false" />
+    <Property Name="residential_address" Type="nvarchar" MaxLength="200" Nullable="false" />
+    <Property Name="mobile" Type="numeric" Precision="10" Scale="0" Nullable="false" />
+    <Property Name="is_coordinator" Type="int" Nullable="false" />
+    <Property Name="served" Type="nvarchar" MaxLength="200" />
+    <Property Name="username" Type="nvarchar" MaxLength="50" Nullable="false" />
+  </EntityType>
+  <!--Errors Found During Generation:
+warning 6002: The table/view 'ExamPortal.dbo.TeacherLogin' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+  <EntityType Name="TeacherLogin">
+    <Key>
+      <PropertyRef Name="user_id" />
+      <PropertyRef Name="username" />
+      <PropertyRef Name="password" />
+      <PropertyRef Name="role" />
+      <PropertyRef Name="faculty_id" />
+    </Key>
+    <Property Name="user_id" Type="int" Nullable="false" />
+    <Property Name="username" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="password" Type="nchar" MaxLength="50" Nullable="false" />
+    <Property Name="role" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="faculty_id" Type="int" Nullable="false" />
+  </EntityType>
+  <!--Errors Found During Generation:
+warning 6002: The table/view 'ExamPortal.dbo.UnapprovedResults' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+  <EntityType Name="UnapprovedResults">
+    <Key>
+      <PropertyRef Name="unique_name" />
+      <PropertyRef Name="semester" />
+      <PropertyRef Name="year" />
+      <PropertyRef Name="course_name" />
+      <PropertyRef Name="creator" />
+      <PropertyRef Name="subject_name" />
+      <PropertyRef Name="photo" />
+      <PropertyRef Name="test_name" />
+      <PropertyRef Name="approved" />
+      <PropertyRef Name="scholar_no" />
+    </Key>
+    <Property Name="unique_name" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="semester" Type="tinyint" Nullable="false" />
+    <Property Name="year" Type="tinyint" Nullable="false" />
+    <Property Name="course_name" Type="nvarchar" MaxLength="100" Nullable="false" />
+    <Property Name="creator" Type="int" Nullable="false" />
+    <Property Name="subject_name" Type="nvarchar" MaxLength="100" Nullable="false" />
+    <Property Name="photo" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="test_name" Type="nvarchar" MaxLength="100" Nullable="false" />
+    <Property Name="approved" Type="bit" Nullable="false" />
+    <Property Name="marks" Type="numeric" Precision="4" Scale="2" />
+    <Property Name="scholar_no" Type="int" Nullable="false" />
+  </EntityType>
+  <!--Errors Found During Generation:
+warning 6002: The table/view 'ExamPortal.dbo.UnassignedTest' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+  <EntityType Name="UnassignedTest">
+    <Key>
+      <PropertyRef Name="test_id" />
+      <PropertyRef Name="test_name" />
+      <PropertyRef Name="subject_name" />
+      <PropertyRef Name="creator" />
+    </Key>
+    <Property Name="test_id" Type="int" Nullable="false" />
+    <Property Name="test_name" Type="nvarchar" MaxLength="100" Nullable="false" />
+    <Property Name="description" Type="nvarchar" MaxLength="200" />
+    <Property Name="subject_name" Type="nvarchar" MaxLength="100" Nullable="false" />
+    <Property Name="date" Type="date" />
+    <Property Name="start_time" Type="time" Precision="7" />
+    <Property Name="end_time" Type="time" Precision="7" />
+    <Property Name="creator" Type="nvarchar" MaxLength="50" Nullable="false" />
+  </EntityType>
+  <!--Errors Found During Generation:
+warning 6002: The table/view 'ExamPortal.dbo.UnregisteredTest' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+  <EntityType Name="UnregisteredTest">
+    <Key>
+      <PropertyRef Name="test_id" />
+      <PropertyRef Name="test_name" />
+      <PropertyRef Name="faculty_name" />
+      <PropertyRef Name="subject_name" />
+      <PropertyRef Name="scholar_no" />
+      <PropertyRef Name="registered" />
+    </Key>
+    <Property Name="test_id" Type="int" Nullable="false" />
+    <Property Name="test_name" Type="nvarchar" MaxLength="100" Nullable="false" />
+    <Property Name="description" Type="nvarchar" MaxLength="200" />
+    <Property Name="faculty_name" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="date" Type="date" />
+    <Property Name="start_time" Type="time" Precision="7" />
+    <Property Name="end_time" Type="time" Precision="7" />
+    <Property Name="subject_name" Type="nvarchar" MaxLength="100" Nullable="false" />
+    <Property Name="scholar_no" Type="int" Nullable="false" />
+    <Property Name="registered" Type="int" Nullable="false" />
+  </EntityType>
+  <Association Name="FK_Assigned_Test_Student">
+    <End Role="Student" Type="Self.Student" Multiplicity="1" />
+    <End Role="Assigned_Test" Type="Self.Assigned_Test" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Student">
+        <PropertyRef Name="scholar_no" />
+      </Principal>
+      <Dependent Role="Assigned_Test">
+        <PropertyRef Name="scholar_no" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Assigned_Test_Test">
+    <End Role="Test" Type="Self.Test" Multiplicity="1" />
+    <End Role="Assigned_Test" Type="Self.Assigned_Test" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Test">
+        <PropertyRef Name="test_id" />
+      </Principal>
+      <Dependent Role="Assigned_Test">
+        <PropertyRef Name="test_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Class_Course">
+    <End Role="Course" Type="Self.Course" Multiplicity="1" />
+    <End Role="Class" Type="Self.Class" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Course">
+        <PropertyRef Name="course_name" />
+      </Principal>
+      <Dependent Role="Class">
+        <PropertyRef Name="course_name" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Class_Teacher">
+    <End Role="Teacher" Type="Self.Teacher" Multiplicity="1" />
+    <End Role="Class" Type="Self.Class" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Teacher">
+        <PropertyRef Name="faculty_id" />
+      </Principal>
+      <Dependent Role="Class">
+        <PropertyRef Name="class_coordinator" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Question_Subject">
+    <End Role="Subject" Type="Self.Subject" Multiplicity="1" />
+    <End Role="Question" Type="Self.Question" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Subject">
+        <PropertyRef Name="subject_code" />
+      </Principal>
+      <Dependent Role="Question">
+        <PropertyRef Name="subject_code" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Question_Teacher">
+    <End Role="Teacher" Type="Self.Teacher" Multiplicity="1" />
+    <End Role="Question" Type="Self.Question" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Teacher">
+        <PropertyRef Name="faculty_id" />
+      </Principal>
+      <Dependent Role="Question">
+        <PropertyRef Name="creator" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Registered_Candidates_Student">
+    <End Role="Student" Type="Self.Student" Multiplicity="1" />
+    <End Role="Registered_Candidates" Type="Self.Registered_Candidates" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Student">
+        <PropertyRef Name="scholar_no" />
+      </Principal>
+      <Dependent Role="Registered_Candidates">
+        <PropertyRef Name="scholar_no" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Registered_Candidates_Test">
+    <End Role="Test" Type="Self.Test" Multiplicity="1" />
+    <End Role="Registered_Candidates" Type="Self.Registered_Candidates" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Test">
+        <PropertyRef Name="test_id" />
+      </Principal>
+      <Dependent Role="Registered_Candidates">
+        <PropertyRef Name="test_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Student_10th_Qualification_Student">
+    <End Role="Student" Type="Self.Student" Multiplicity="1" />
+    <End Role="Student_10th_Qualification" Type="Self.Student_10th_Qualification" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Student">
+        <PropertyRef Name="scholar_no" />
+      </Principal>
+      <Dependent Role="Student_10th_Qualification">
+        <PropertyRef Name="scholar_no" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Student_10th_Qualification_Subjects_In_10th">
+    <End Role="Subjects_In_10th" Type="Self.Subjects_In_10th" Multiplicity="1" />
+    <End Role="Student_10th_Qualification" Type="Self.Student_10th_Qualification" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Subjects_In_10th">
+        <PropertyRef Name="subject_code" />
+      </Principal>
+      <Dependent Role="Student_10th_Qualification">
+        <PropertyRef Name="subject_code" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Student_12th_Qualification_Student">
+    <End Role="Student" Type="Self.Student" Multiplicity="1" />
+    <End Role="Student_12th_Qualification" Type="Self.Student_12th_Qualification" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Student">
+        <PropertyRef Name="scholar_no" />
+      </Principal>
+      <Dependent Role="Student_12th_Qualification">
+        <PropertyRef Name="scholar_no" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Student_12th_Qualification_Subjects_In_12th">
+    <End Role="Subjects_In_12th" Type="Self.Subjects_In_12th" Multiplicity="1" />
+    <End Role="Student_12th_Qualification" Type="Self.Student_12th_Qualification" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Subjects_In_12th">
+        <PropertyRef Name="subject_code" />
+      </Principal>
+      <Dependent Role="Student_12th_Qualification">
+        <PropertyRef Name="subject_code" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Student_Class">
+    <End Role="Class" Type="Self.Class" Multiplicity="1" />
+    <End Role="Student" Type="Self.Student" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Class">
+        <PropertyRef Name="class_id" />
+      </Principal>
+      <Dependent Role="Student">
+        <PropertyRef Name="class_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Student_Current_Qualification_Student">
+    <End Role="Student" Type="Self.Student" Multiplicity="1" />
+    <End Role="Student_Current_Qualification" Type="Self.Student_Current_Qualification" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Student">
+        <PropertyRef Name="scholar_no" />
+      </Principal>
+      <Dependent Role="Student_Current_Qualification">
+        <PropertyRef Name="scholar_no" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Student_Current_Qualification_Subject">
+    <End Role="Subject" Type="Self.Subject" Multiplicity="1" />
+    <End Role="Student_Current_Qualification" Type="Self.Student_Current_Qualification" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Subject">
+        <PropertyRef Name="subject_code" />
+      </Principal>
+      <Dependent Role="Student_Current_Qualification">
+        <PropertyRef Name="subject_code" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Student_Users">
+    <End Role="UserLogin" Type="Self.UserLogin" Multiplicity="1" />
+    <End Role="Student" Type="Self.Student" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="UserLogin">
+        <PropertyRef Name="user_id" />
+      </Principal>
+      <Dependent Role="Student">
+        <PropertyRef Name="user_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Teacher_Users">
+    <End Role="UserLogin" Type="Self.UserLogin" Multiplicity="1" />
+    <End Role="Teacher" Type="Self.Teacher" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="UserLogin">
+        <PropertyRef Name="user_id" />
+      </Principal>
+      <Dependent Role="Teacher">
+        <PropertyRef Name="user_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Teaches_Class">
+    <End Role="Class" Type="Self.Class" Multiplicity="1" />
+    <End Role="Teaches" Type="Self.Teaches" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Class">
+        <PropertyRef Name="class_id" />
+      </Principal>
+      <Dependent Role="Teaches">
+        <PropertyRef Name="class_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Teaches_Subject">
+    <End Role="Subject" Type="Self.Subject" Multiplicity="1" />
+    <End Role="Teaches" Type="Self.Teaches" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Subject">
+        <PropertyRef Name="subject_code" />
+      </Principal>
+      <Dependent Role="Teaches">
+        <PropertyRef Name="subject_code" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Teaches_Teacher">
+    <End Role="Teacher" Type="Self.Teacher" Multiplicity="1" />
+    <End Role="Teaches" Type="Self.Teaches" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Teacher">
+        <PropertyRef Name="faculty_id" />
+      </Principal>
+      <Dependent Role="Teaches">
+        <PropertyRef Name="faculty_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_TempCreatedTest_Question">
+    <End Role="Question" Type="Self.Question" Multiplicity="1" />
+    <End Role="TempCreatedTest" Type="Self.TempCreatedTest" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Question">
+        <PropertyRef Name="q_id" />
+      </Principal>
+      <Dependent Role="TempCreatedTest">
+        <PropertyRef Name="q_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_TempCreatedTest_Teacher">
+    <End Role="Teacher" Type="Self.Teacher" Multiplicity="1" />
+    <End Role="TempCreatedTest" Type="Self.TempCreatedTest" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Teacher">
+        <PropertyRef Name="faculty_id" />
+      </Principal>
+      <Dependent Role="TempCreatedTest">
+        <PropertyRef Name="faculty_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Test_Question_Question">
+    <End Role="Question" Type="Self.Question" Multiplicity="1" />
+    <End Role="Test_Question" Type="Self.Test_Question" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Question">
+        <PropertyRef Name="q_id" />
+      </Principal>
+      <Dependent Role="Test_Question">
+        <PropertyRef Name="question_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Test_Question_Test">
+    <End Role="Test" Type="Self.Test" Multiplicity="1" />
+    <End Role="Test_Question" Type="Self.Test_Question" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Test">
+        <PropertyRef Name="test_id" />
+      </Principal>
+      <Dependent Role="Test_Question">
+        <PropertyRef Name="test_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Test_Subject">
+    <End Role="Subject" Type="Self.Subject" Multiplicity="1" />
+    <End Role="Test" Type="Self.Test" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Subject">
+        <PropertyRef Name="subject_code" />
+      </Principal>
+      <Dependent Role="Test">
+        <PropertyRef Name="subject_code" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Test_Teacher">
+    <End Role="Teacher" Type="Self.Teacher" Multiplicity="1" />
+    <End Role="Test" Type="Self.Test" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Teacher">
+        <PropertyRef Name="faculty_id" />
+      </Principal>
+      <Dependent Role="Test">
+        <PropertyRef Name="creator" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_UserRole_Users">
+    <End Role="UserLogin" Type="Self.UserLogin" Multiplicity="1" />
+    <End Role="UserRole" Type="Self.UserRole" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="UserLogin">
+        <PropertyRef Name="user_id" />
+      </Principal>
+      <Dependent Role="UserRole">
+        <PropertyRef Name="user_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Function Name="getUnregisteredTests" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="scholar_no" Type="int" Mode="In" />
+  </Function>
+  <EntityContainer Name="ExamPortalModelStoreContainer">
+    <EntitySet Name="Assigned_Test" EntityType="Self.Assigned_Test" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Class" EntityType="Self.Class" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Course" EntityType="Self.Course" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Loger" EntityType="Self.Loger" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Question" EntityType="Self.Question" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Registered_Candidates" EntityType="Self.Registered_Candidates" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Student" EntityType="Self.Student" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Student_10th_Qualification" EntityType="Self.Student_10th_Qualification" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Student_12th_Qualification" EntityType="Self.Student_12th_Qualification" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Student_Current_Qualification" EntityType="Self.Student_Current_Qualification" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Subject" EntityType="Self.Subject" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Subjects_In_10th" EntityType="Self.Subjects_In_10th" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Subjects_In_12th" EntityType="Self.Subjects_In_12th" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Teacher" EntityType="Self.Teacher" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Teaches" EntityType="Self.Teaches" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="TempCreatedTest" EntityType="Self.TempCreatedTest" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Test" EntityType="Self.Test" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Test_Question" EntityType="Self.Test_Question" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="UserLogin" EntityType="Self.UserLogin" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="UserRole" EntityType="Self.UserRole" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Student_Test_Record" EntityType="Self.Student_Test_Record" store:Type="Tables" store:Schema="dbo">
+      <DefiningQuery>SELECT 
+    [Student_Test_Record].[test_id] AS [test_id], 
+    [Student_Test_Record].[scholar_no] AS [scholar_no], 
+    [Student_Test_Record].[q_id] AS [q_id], 
+    [Student_Test_Record].[q_virtual_id] AS [q_virtual_id], 
+    [Student_Test_Record].[question_text] AS [question_text], 
+    [Student_Test_Record].[option1] AS [option1], 
+    [Student_Test_Record].[option2] AS [option2], 
+    [Student_Test_Record].[option3] AS [option3], 
+    [Student_Test_Record].[option4] AS [option4], 
+    [Student_Test_Record].[is_option1_correct] AS [is_option1_correct], 
+    [Student_Test_Record].[is_option2_correct] AS [is_option2_correct], 
+    [Student_Test_Record].[is_option3_correct] AS [is_option3_correct], 
+    [Student_Test_Record].[is_option4_correct] AS [is_option4_correct], 
+    [Student_Test_Record].[is_student_selected_option1] AS [is_student_selected_option1], 
+    [Student_Test_Record].[is_student_selected_option2] AS [is_student_selected_option2], 
+    [Student_Test_Record].[is_student_selected_option3] AS [is_student_selected_option3], 
+    [Student_Test_Record].[is_student_selected_option4] AS [is_student_selected_option4], 
+    [Student_Test_Record].[record_datetime] AS [record_datetime]
+    FROM [dbo].[Student_Test_Record] AS [Student_Test_Record]</DefiningQuery>
+    </EntitySet>
+    <EntitySet Name="AdminLogin" EntityType="Self.AdminLogin" store:Type="Views" store:Schema="dbo">
+      <DefiningQuery>SELECT 
+    [AdminLogin].[user_id] AS [user_id], 
+    [AdminLogin].[username] AS [username], 
+    [AdminLogin].[password] AS [password], 
+    [AdminLogin].[role] AS [role]
+    FROM [dbo].[AdminLogin] AS [AdminLogin]</DefiningQuery>
+    </EntitySet>
+    <EntitySet Name="ClassAdminDesk" EntityType="Self.ClassAdminDesk" store:Type="Views" store:Schema="dbo">
+      <DefiningQuery>SELECT 
+    [ClassAdminDesk].[course_name] AS [course_name], 
+    [ClassAdminDesk].[class_coordinator] AS [class_coordinator], 
+    [ClassAdminDesk].[year] AS [year], 
+    [ClassAdminDesk].[semester] AS [semester], 
+    [ClassAdminDesk].[class_id] AS [class_id]
+    FROM [dbo].[ClassAdminDesk] AS [ClassAdminDesk]</DefiningQuery>
+    </EntitySet>
+    <EntitySet Name="CourseAdminDesk" EntityType="Self.CourseAdminDesk" store:Type="Views" store:Schema="dbo">
+      <DefiningQuery>SELECT 
+    [CourseAdminDesk].[course_name] AS [course_name]
+    FROM [dbo].[CourseAdminDesk] AS [CourseAdminDesk]</DefiningQuery>
+    </EntitySet>
+    <EntitySet Name="StudentLogin" EntityType="Self.StudentLogin" store:Type="Views" store:Schema="dbo">
+      <DefiningQuery>SELECT 
+    [StudentLogin].[user_id] AS [user_id], 
+    [StudentLogin].[username] AS [username], 
+    [StudentLogin].[password] AS [password], 
+    [StudentLogin].[scholar_no] AS [scholar_no], 
+    [StudentLogin].[role] AS [role]
+    FROM [dbo].[StudentLogin] AS [StudentLogin]</DefiningQuery>
+    </EntitySet>
+    <EntitySet Name="SubjectAdminDesk" EntityType="Self.SubjectAdminDesk" store:Type="Views" store:Schema="dbo">
+      <DefiningQuery>SELECT 
+    [SubjectAdminDesk].[subject_code] AS [subject_code], 
+    [SubjectAdminDesk].[subject_name] AS [subject_name]
+    FROM [dbo].[SubjectAdminDesk] AS [SubjectAdminDesk]</DefiningQuery>
+    </EntitySet>
+    <EntitySet Name="TeacherAdminDesk" EntityType="Self.TeacherAdminDesk" store:Type="Views" store:Schema="dbo">
+      <DefiningQuery>SELECT 
+    [TeacherAdminDesk].[user_id] AS [user_id], 
+    [TeacherAdminDesk].[faculty_id] AS [faculty_id], 
+    [TeacherAdminDesk].[faculty_name] AS [faculty_name], 
+    [TeacherAdminDesk].[graduate] AS [graduate], 
+    [TeacherAdminDesk].[post_graduate] AS [post_graduate], 
+    [TeacherAdminDesk].[year_graduated] AS [year_graduated], 
+    [TeacherAdminDesk].[year_post_graduated] AS [year_post_graduated], 
+    [TeacherAdminDesk].[dob] AS [dob], 
+    [TeacherAdminDesk].[blood_group] AS [blood_group], 
+    [TeacherAdminDesk].[residential_address] AS [residential_address], 
+    [TeacherAdminDesk].[mobile] AS [mobile], 
+    [TeacherAdminDesk].[is_coordinator] AS [is_coordinator], 
+    [TeacherAdminDesk].[served] AS [served], 
+    [TeacherAdminDesk].[username] AS [username]
+    FROM [dbo].[TeacherAdminDesk] AS [TeacherAdminDesk]</DefiningQuery>
+    </EntitySet>
+    <EntitySet Name="TeacherLogin" EntityType="Self.TeacherLogin" store:Type="Views" store:Schema="dbo">
+      <DefiningQuery>SELECT 
+    [TeacherLogin].[user_id] AS [user_id], 
+    [TeacherLogin].[username] AS [username], 
+    [TeacherLogin].[password] AS [password], 
+    [TeacherLogin].[role] AS [role], 
+    [TeacherLogin].[faculty_id] AS [faculty_id]
+    FROM [dbo].[TeacherLogin] AS [TeacherLogin]</DefiningQuery>
+    </EntitySet>
+    <EntitySet Name="UnapprovedResults" EntityType="Self.UnapprovedResults" store:Type="Views" store:Schema="dbo">
+      <DefiningQuery>SELECT 
+    [UnapprovedResults].[unique_name] AS [unique_name], 
+    [UnapprovedResults].[semester] AS [semester], 
+    [UnapprovedResults].[year] AS [year], 
+    [UnapprovedResults].[course_name] AS [course_name], 
+    [UnapprovedResults].[creator] AS [creator], 
+    [UnapprovedResults].[subject_name] AS [subject_name], 
+    [UnapprovedResults].[photo] AS [photo], 
+    [UnapprovedResults].[test_name] AS [test_name], 
+    [UnapprovedResults].[approved] AS [approved], 
+    [UnapprovedResults].[marks] AS [marks], 
+    [UnapprovedResults].[scholar_no] AS [scholar_no]
+    FROM [dbo].[UnapprovedResults] AS [UnapprovedResults]</DefiningQuery>
+    </EntitySet>
+    <EntitySet Name="UnassignedTest" EntityType="Self.UnassignedTest" store:Type="Views" store:Schema="dbo">
+      <DefiningQuery>SELECT 
+    [UnassignedTest].[test_id] AS [test_id], 
+    [UnassignedTest].[test_name] AS [test_name], 
+    [UnassignedTest].[description] AS [description], 
+    [UnassignedTest].[subject_name] AS [subject_name], 
+    [UnassignedTest].[date] AS [date], 
+    [UnassignedTest].[start_time] AS [start_time], 
+    [UnassignedTest].[end_time] AS [end_time], 
+    [UnassignedTest].[creator] AS [creator]
+    FROM [dbo].[UnassignedTest] AS [UnassignedTest]</DefiningQuery>
+    </EntitySet>
+    <EntitySet Name="UnregisteredTest" EntityType="Self.UnregisteredTest" store:Type="Views" store:Schema="dbo">
+      <DefiningQuery>SELECT 
+    [UnregisteredTest].[test_id] AS [test_id], 
+    [UnregisteredTest].[test_name] AS [test_name], 
+    [UnregisteredTest].[description] AS [description], 
+    [UnregisteredTest].[faculty_name] AS [faculty_name], 
+    [UnregisteredTest].[date] AS [date], 
+    [UnregisteredTest].[start_time] AS [start_time], 
+    [UnregisteredTest].[end_time] AS [end_time], 
+    [UnregisteredTest].[subject_name] AS [subject_name], 
+    [UnregisteredTest].[scholar_no] AS [scholar_no], 
+    [UnregisteredTest].[registered] AS [registered]
+    FROM [dbo].[UnregisteredTest] AS [UnregisteredTest]</DefiningQuery>
+    </EntitySet>
+    <AssociationSet Name="FK_Assigned_Test_Student" Association="Self.FK_Assigned_Test_Student">
+      <End Role="Student" EntitySet="Student" />
+      <End Role="Assigned_Test" EntitySet="Assigned_Test" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Assigned_Test_Test" Association="Self.FK_Assigned_Test_Test">
+      <End Role="Test" EntitySet="Test" />
+      <End Role="Assigned_Test" EntitySet="Assigned_Test" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Class_Course" Association="Self.FK_Class_Course">
+      <End Role="Course" EntitySet="Course" />
+      <End Role="Class" EntitySet="Class" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Class_Teacher" Association="Self.FK_Class_Teacher">
+      <End Role="Teacher" EntitySet="Teacher" />
+      <End Role="Class" EntitySet="Class" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Question_Subject" Association="Self.FK_Question_Subject">
+      <End Role="Subject" EntitySet="Subject" />
+      <End Role="Question" EntitySet="Question" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Question_Teacher" Association="Self.FK_Question_Teacher">
+      <End Role="Teacher" EntitySet="Teacher" />
+      <End Role="Question" EntitySet="Question" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Registered_Candidates_Student" Association="Self.FK_Registered_Candidates_Student">
+      <End Role="Student" EntitySet="Student" />
+      <End Role="Registered_Candidates" EntitySet="Registered_Candidates" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Registered_Candidates_Test" Association="Self.FK_Registered_Candidates_Test">
+      <End Role="Test" EntitySet="Test" />
+      <End Role="Registered_Candidates" EntitySet="Registered_Candidates" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Student_10th_Qualification_Student" Association="Self.FK_Student_10th_Qualification_Student">
+      <End Role="Student" EntitySet="Student" />
+      <End Role="Student_10th_Qualification" EntitySet="Student_10th_Qualification" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Student_10th_Qualification_Subjects_In_10th" Association="Self.FK_Student_10th_Qualification_Subjects_In_10th">
+      <End Role="Subjects_In_10th" EntitySet="Subjects_In_10th" />
+      <End Role="Student_10th_Qualification" EntitySet="Student_10th_Qualification" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Student_12th_Qualification_Student" Association="Self.FK_Student_12th_Qualification_Student">
+      <End Role="Student" EntitySet="Student" />
+      <End Role="Student_12th_Qualification" EntitySet="Student_12th_Qualification" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Student_12th_Qualification_Subjects_In_12th" Association="Self.FK_Student_12th_Qualification_Subjects_In_12th">
+      <End Role="Subjects_In_12th" EntitySet="Subjects_In_12th" />
+      <End Role="Student_12th_Qualification" EntitySet="Student_12th_Qualification" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Student_Class" Association="Self.FK_Student_Class">
+      <End Role="Class" EntitySet="Class" />
+      <End Role="Student" EntitySet="Student" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Student_Current_Qualification_Student" Association="Self.FK_Student_Current_Qualification_Student">
+      <End Role="Student" EntitySet="Student" />
+      <End Role="Student_Current_Qualification" EntitySet="Student_Current_Qualification" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Student_Current_Qualification_Subject" Association="Self.FK_Student_Current_Qualification_Subject">
+      <End Role="Subject" EntitySet="Subject" />
+      <End Role="Student_Current_Qualification" EntitySet="Student_Current_Qualification" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Student_Users" Association="Self.FK_Student_Users">
+      <End Role="UserLogin" EntitySet="UserLogin" />
+      <End Role="Student" EntitySet="Student" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Teacher_Users" Association="Self.FK_Teacher_Users">
+      <End Role="UserLogin" EntitySet="UserLogin" />
+      <End Role="Teacher" EntitySet="Teacher" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Teaches_Class" Association="Self.FK_Teaches_Class">
+      <End Role="Class" EntitySet="Class" />
+      <End Role="Teaches" EntitySet="Teaches" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Teaches_Subject" Association="Self.FK_Teaches_Subject">
+      <End Role="Subject" EntitySet="Subject" />
+      <End Role="Teaches" EntitySet="Teaches" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Teaches_Teacher" Association="Self.FK_Teaches_Teacher">
+      <End Role="Teacher" EntitySet="Teacher" />
+      <End Role="Teaches" EntitySet="Teaches" />
+    </AssociationSet>
+    <AssociationSet Name="FK_TempCreatedTest_Question" Association="Self.FK_TempCreatedTest_Question">
+      <End Role="Question" EntitySet="Question" />
+      <End Role="TempCreatedTest" EntitySet="TempCreatedTest" />
+    </AssociationSet>
+    <AssociationSet Name="FK_TempCreatedTest_Teacher" Association="Self.FK_TempCreatedTest_Teacher">
+      <End Role="Teacher" EntitySet="Teacher" />
+      <End Role="TempCreatedTest" EntitySet="TempCreatedTest" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Test_Question_Question" Association="Self.FK_Test_Question_Question">
+      <End Role="Question" EntitySet="Question" />
+      <End Role="Test_Question" EntitySet="Test_Question" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Test_Question_Test" Association="Self.FK_Test_Question_Test">
+      <End Role="Test" EntitySet="Test" />
+      <End Role="Test_Question" EntitySet="Test_Question" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Test_Subject" Association="Self.FK_Test_Subject">
+      <End Role="Subject" EntitySet="Subject" />
+      <End Role="Test" EntitySet="Test" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Test_Teacher" Association="Self.FK_Test_Teacher">
+      <End Role="Teacher" EntitySet="Teacher" />
+      <End Role="Test" EntitySet="Test" />
+    </AssociationSet>
+    <AssociationSet Name="FK_UserRole_Users" Association="Self.FK_UserRole_Users">
+      <End Role="UserLogin" EntitySet="UserLogin" />
+      <End Role="UserRole" EntitySet="UserRole" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

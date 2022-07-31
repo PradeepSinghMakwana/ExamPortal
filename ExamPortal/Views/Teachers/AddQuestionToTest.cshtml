@@ -1,0 +1,226 @@
+﻿
+@{
+    ViewBag.Title = "Add Question To Test";
+}
+@model ExamPortal.Models.ViewModels.AddQuestionToTestVM
+<script src="//code.jquery.com/jquery-2.1.1.min.js" type="text/javascript"></script>
+<script>
+    $(function () {
+        $("#right-sidebar .list-group").find("a").removeClass('active');
+        $('#right-sidebar .list-group a:contains("Create New Test")').addClass("active");
+    });
+</script>
+<script>
+    $(function () {
+        $('#ListSubject').hide();
+        $('#ListTest').hide();
+        $('select[name="selQuestionsFrom"]').change(function () {
+            $('#ListTest').hide();
+            $("#ListSubject").hide();
+            $that = $(this).children("option:selected").val();
+            switch ($that) {
+                case 'AllQuestions':
+                    $("#QuestionsView a").filter(function () {
+                        $(this).toggle(true);
+                    });
+                     break;
+                case 'AllQuestionsFromSubject':
+                    $("#ListSubject").show();
+                    break;
+                case 'AllQuestionsFromTest':
+                    $("#ListTest").show();
+                    break;
+                default:  
+            }
+        });
+        $('input[name="selectedSubjects"]').change(function () {
+            var myArr = [];
+            $.each($('input[name="selectedSubjects"]:checked'), function () {
+                myArr.push(this.value);
+            });
+            $("#QuestionsView a").filter(function () {
+                $that = $(this);
+                var qSubjects = $that.attr("data-subject").split(",");
+                var found = myArr.includes($that.attr("data-subject"));
+                $that.toggle(found);
+            });
+        });
+        $('input[name="selectedTests"]').change(function () {
+            var myArr = [];
+            $.each($('input[name="selectedTests"]:checked'), function () {
+                myArr.push(this.value);
+            });
+            $("#QuestionsView a").filter(function () {
+                $that = $(this);
+                var qTests = $that.attr("data-test").split(",");
+                var found = qTests.some(q => myArr.includes(q));
+                $that.toggle(found);
+            });
+        });
+        
+    });
+</script>
+
+<style>
+    .rounded {
+        padding: 0px 5px 0px 9px;
+        line-height: 21px;
+        font-weight: 700;
+        border-radius: 100%;
+        margin-top: 0;
+        margin-bottom: 0;
+    }
+</style>
+
+@using (Html.BeginForm()) { 
+<div class="row">
+    <div class="col-lg-12">
+        <h2>Create Test</h2>
+    </div>
+</div>
+<div class="row">
+    <div class="col-lg-12">
+        <h3>Question repository consists of</h3>
+        <div class="row">
+            <div class="col-lg-4">
+                <select name="selQuestionsFrom">
+                    <option value="AllQuestions">All Questions</option>
+                    <option value="AllQuestionsFromSubject">All Questions From Subject</option>
+                    <option value="AllQuestionsFromTest">All Questions From Test</option>
+                </select>
+            </div>
+            <div class="col-lg-6">
+                <div id="ListSubject">
+                    <div class="form-group">
+                        @Html.LabelFor(x => Model.Subjects, htmlAttributes: new { @class = "control-label col-md-2" })
+                        <div class="col-md-10">
+                            @{
+                                ViewData["multiSelect"] = true;
+                                Html.RenderPartial("_ListSubjects", Model.Subjects, ViewData);
+                            }
+                            @Html.ValidationMessageFor(x => x.question_subject_code, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-lg-12">
+                <div id="ListTest">
+                    <h3>Select test to include questions from</h3>
+                            @{
+                                ViewData["multiSelect"] = true;
+                                Html.RenderPartial("_ListTest", Model.Tests, ViewData);
+                            }
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="row">
+    <div class="col-lg-12">
+        <h3>Questions</h3>
+        <div id="QuestionsView">
+            @{
+                Html.RenderPartial("_ViewQuestion2", Model.Questions);
+            }
+        </div>
+    </div>
+</div>
+<div class="row">
+    <div class="col-lg-12">
+        <div class="row">
+            <div class="col-lg-3">
+                <ul class="list-group">
+                    @{int? questionId = null;}
+                    @if (Request.QueryString["questionId"] != null)
+                    {
+                        questionId = Convert.ToInt32(Request.QueryString["questionId"].ToString());
+                    }
+                    <li class="list-group-item">
+                        @if (questionId != null) {
+                            @Html.ActionLink(">", "appendToTempCreatedTest", "Teachers", new { questionId = questionId, unit = 1 }, new { @class = "btn btn-primary btn-lg rounded" })
+                        }
+                        Unit 1 <span class="badge">@(Model.NoOfQuestionsInUnit1)</span>
+                    </li>
+                    <li class="list-group-item">
+                        @if (questionId != null)
+                        {
+                            @Html.ActionLink(">", "appendToTempCreatedTest", "Teachers", new { questionId = questionId, unit = 2 }, new { @class = "btn btn-primary btn-lg rounded" })
+                        }
+                        Unit 2 <span class="badge">@(Model.NoOfQuestionsInUnit2)</span>
+                        </li>
+                    <li class="list-group-item">
+                        @if (questionId != null)
+                        {
+                            @Html.ActionLink(">", "appendToTempCreatedTest", "Teachers", new { questionId = questionId, unit = 3 }, new { @class = "btn btn-primary btn-lg rounded" })
+                        }
+                        Unit 3 <span class="badge">@(Model.NoOfQuestionsInUnit3)</span>
+                    </li>
+                    <li class="list-group-item">
+                        @if (questionId != null)
+                        {
+                            @Html.ActionLink(">", "appendToTempCreatedTest", "Teachers", new { questionId = questionId, unit = 4 }, new { @class = "btn btn-primary btn-lg rounded" })
+                        }
+                        Unit 4 <span class="badge">@(Model.NoOfQuestionsInUnit4)</span>
+                    </li>
+                    <li class="list-group-item">
+                        @if (questionId != null)
+                        {
+                            @Html.ActionLink(">", "appendToTempCreatedTest", "Teachers", new { questionId = questionId, unit = 5 }, new { @class = "btn btn-primary btn-lg rounded" })
+                        }
+                        Unit 5 <span class="badge">@(Model.NoOfQuestionsInUnit5)</span>
+                    </li>
+                </ul>
+            </div>
+            <div class="col-lg-9">
+                <ul class="nav nav-tabs">
+                    <li class="active"><a data-toggle="tab" href="#unit1">Unit 1</a></li>
+                    <li><a data-toggle="tab" href="#unit2">Unit 2</a></li>
+                    <li><a data-toggle="tab" href="#unit3">Unit 3</a></li>
+                    <li><a data-toggle="tab" href="#unit4">Unit 4</a></li>
+                    <li><a data-toggle="tab" href="#unit5">Unit 5</a></li>
+                </ul>
+                <div class="tab-content">
+                    <div id="unit1" class="tab-pane fade in active">
+                        @{
+                            ViewData["unit"] = 1;
+                            Html.RenderPartial("_QuestionInUnit", Model.QuestionsInUnit1, ViewData);
+                        }
+                    </div>
+                    <div id="unit2" class="tab-pane fade">
+                        @{
+                            ViewData["unit"] = 2;
+                            Html.RenderPartial("_QuestionInUnit", Model.QuestionsInUnit2, ViewData);
+                        }
+                    </div>
+                    <div id="unit3" class="tab-pane fade">
+                        @{
+                            ViewData["unit"] = 3;
+                            Html.RenderPartial("_QuestionInUnit", Model.QuestionsInUnit3, ViewData);
+                        }
+                    </div>
+                    <div id="unit4" class="tab-pane fade">
+                        @{
+                            ViewData["unit"] = 4;
+                            Html.RenderPartial("_QuestionInUnit", Model.QuestionsInUnit4, ViewData);
+                        }
+                    </div>
+                    <div id="unit5" class="tab-pane fade">
+                        @{
+                            ViewData["unit"] = 5;
+                            Html.RenderPartial("_QuestionInUnit", Model.QuestionsInUnit5, ViewData);
+                        }
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="row">
+    <div class="col-lg-12 text-center"><br /><br />
+        <input type="submit" value="Create Test" class="btn btn-success btn-lg" />
+    </div>
+</div>
+
+                            }

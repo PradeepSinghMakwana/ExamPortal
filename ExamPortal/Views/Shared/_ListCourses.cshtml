@@ -1,0 +1,35 @@
+﻿@model IEnumerable<ExamPortal.Models.Course>
+@if (((List<string>)Session["role"]).Contains("admin"))
+{
+    <p>
+        @Html.ActionLink("Create New", "CreateCourse","Admins",new { }, new { @class = "btn btn-primary" })
+    </p>
+}
+<table class="table">
+    <tr>
+        <th>@Html.DisplayNameFor(model => model.course_name)</th>
+        @if (((List<string>)Session["role"]).Contains("admin"))
+        {
+            <th></th>
+        }
+        </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.course_name)
+            </td>
+            @if (((List<string>)Session["role"]).Contains("admin"))
+            {
+                <td>
+                    @Html.ActionLink("Edit", "EditCourse","Admins", new { id = item.course_name }, new { @class = "btn btn-primary" }) |
+                    @Html.ActionLink("Delete", "DeleteCourse","Admins", new { id = item.course_name }, new { @class = "btn btn-danger" })
+                </td>
+            }
+        </tr>
+    }
+
+</table>
+
+

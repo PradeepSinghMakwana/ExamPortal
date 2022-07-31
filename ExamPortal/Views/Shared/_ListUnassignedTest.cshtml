@@ -1,0 +1,63 @@
+﻿@model IEnumerable<ExamPortal.Models.UnassignedTest>
+
+<div>
+    <table class="table">
+        <tr>
+            <th>
+                Assign
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.test_id)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.test_name)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.description)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.subject_name)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.date)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.start_time)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.end_time)
+            </th>
+        </tr>
+        @foreach (var item in Model)
+        {
+        <tr>
+            <td>
+                @Html.ActionLink("Select","AssignTest","Teachers",new { id=item.test_id },new { @class="btn btn-default"})
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.test_id)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.test_name)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.description)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.subject_name)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.date)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.start_time)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.end_time)
+            </td>
+        </tr>
+        }
+
+    </table>
+
+</div>

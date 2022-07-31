@@ -1,0 +1,164 @@
+﻿@{
+    ViewBag.Title = "Test Screen";
+}
+@model ExamPortal.Models.ViewModels.TestScreen
+
+<h2>TestScreen</h2>
+
+<div class="container">
+    <div class="row">
+        <div class="col-lg-8">
+            <div class="row">
+                <div class="col-lg-12">
+                    @Html.DisplayForModel(Model.Test.test_name)
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-lg-4">
+                    @Html.DisplayForModel(Model.Subject.subject_name)
+                </div>
+                <div class="col-lg-4">
+                    @Html.DisplayForModel(Model.DateTime.ToLongDateString())
+                </div>
+                <div class="col-lg-4">
+                    @Html.DisplayForModel(Model.Test.start_datetime.ToLocalTime())
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-4">
+            <div class="row">
+                <div class="col-lg-6">
+                    @Model.Test.end_datetime.Subtract(DateTime.Now).Minutes:
+                    @Model.Test.end_datetime.Subtract(DateTime.Now).Seconds
+                </div>
+                <div class="col-lg-6">
+                    <div class="row">
+                        <div class="col-lg-12">
+                            <img src="~/Resources/StudentsPic/@Model.Student.photo" />
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-lg-12">
+                            <h4>@Html.DisplayForModel(Model.Student.unique_name)</h4>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-lg-8">
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="panel-group">
+                        <div class="panel panel-warning">
+                            <div class="panel-heading">Note:</div>
+                            <div class="panel-body">
+                                Marks for all options correct +4. <br />
+                                Marks for partial correct (+1*correct-options). <br />
+                                Marks for incorrect options selected (-1*incorrect-options). <br />
+                                Marks if not attempted 0.
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="block">
+                        <div class="row">
+                            <div class="col-lg-2">
+                                @Html.DisplayFor(model => model.CurrentQuestion.q_virtual_no)
+                            </div>
+                            <div class="col-lg-10">
+                                @Html.DisplayFor(model => model.CurrentQuestion.question_text)
+                            </div>
+                        </div>
+                        @if (Model.CurrentQuestion.use_option1)
+                        {
+                            <div class="row">
+                                <div class="col-lg-offset-2 col-lg-10">
+                                    @Html.CheckBoxFor(model => model.CurrentQuestion.is_student_selected_option1)
+                                    @Html.DisplayFor(model => model.CurrentQuestion.option1)
+                                </div>
+                            </div>
+                        }
+                        @if (Model.CurrentQuestion.use_option2)
+                        {
+                            <div class="row">
+                                <div class="col-lg-offset-2 col-lg-10">
+                                    @Html.CheckBoxFor(model => model.CurrentQuestion.is_student_selected_option2)
+                                    @Html.DisplayFor(model => model.CurrentQuestion.option2)
+                                </div>
+                            </div>
+                        }
+                        @if (Model.CurrentQuestion.use_option3)
+                        {
+                            <div class="row">
+                                <div class="col-lg-offset-2 col-lg-10">
+                                    @Html.CheckBoxFor(model => model.CurrentQuestion.is_student_selected_option3)
+                                    @Html.DisplayFor(model => model.CurrentQuestion.option3)
+                                </div>
+                            </div>
+                        }
+                        @if (Model.CurrentQuestion.use_option4)
+                        {
+                            <div class="row">
+                                <div class="col-lg-offset-2 col-lg-10">
+                                    @Html.CheckBoxFor(model => model.CurrentQuestion.is_student_selected_option4)
+                                    @Html.DisplayFor(model => model.CurrentQuestion.option4)
+                                </div>
+                            </div>
+                        }
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-lg-4">
+                    @Html.ActionLink("Previous", "PreviousQuestion","Students",new { }, new { @class = "btn btn-primary" })
+                </div>
+                <div class="col-lg-4">
+                    @Html.ActionLink("Save and Next", "SaveNNext","Students",new { }, new { @class = "btn btn-primary" })
+                </div>
+                <div class="col-lg-4">
+                    @Html.ActionLink("Mark for Review and Proceed", "MarkNProceed","Students",new { }, new { @class = "btn btn-primary" })
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-lg-12">
+                    @if (Model.Submittable)
+                    {
+                        @Html.ActionLink("Submit", "Submit")
+                    }
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-4">
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="panel-group">
+                        <div class="panel panel-info">
+                            <div class="panel-heading">Special Instructions:</div>
+                            <div class="panel-body">
+                                If you don't know the answer to question click "Mark for Review and Proceed".
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="QuestionSidebarPicker">
+                        @{List<Tuple<int,int>> items = Model.AttemptedQuestions.Select(q => new Tuple<int,int>(q.q_virtual_no,q.q_id)).ToList();}
+                        @foreach(var item in items)
+                        {
+                            <div>
+                                @Html.ActionLink(item.Item1.ToString(),"setCurrentQuestionInTestScreen","Students",new { id = item.Item2}, new { htmlAttributes = new { @class = "btn btn-success" } })
+                            </div>
+                        }
+                    </div>
+</div>
+            </div>
+        </div>
+    </div>
+</div>

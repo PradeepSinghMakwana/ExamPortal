@@ -1,0 +1,17 @@
+﻿@model IEnumerable<ExamPortal.Models.ViewModels.CreateStudentVM>
+
+@{
+    ViewBag.Title = "List Students";
+}
+<script src="//code.jquery.com/jquery-2.1.1.min.js" type="text/javascript"></script>
+<script>
+    $(function () {
+        $("#right-sidebar .list-group").find("a").removeClass('active');
+        $('#right-sidebar .list-group a:contains("View Students")').addClass("active");
+    });
+</script>
+<h2>List Students</h2>
+
+@{
+    Html.RenderPartial("_ListStudentsTable", Model);
+}

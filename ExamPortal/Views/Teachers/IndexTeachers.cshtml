@@ -1,0 +1,25 @@
+﻿@model ExamPortal.Models.AdminDeskVM
+
+@{
+    ViewBag.Title = "Index";
+}
+<style>
+    .col-lg-12, .col-lg-4 {
+        overflow: auto;
+    }
+</style>
+<script src="//code.jquery.com/jquery-2.1.1.min.js" type="text/javascript"></script>
+<script>
+    $(function () {
+        $("#right-sidebar .list-group").find("a").removeClass('active');
+        $('#right-sidebar .list-group a:contains("List Teachers")').addClass("active");
+    });
+</script>
+<div class="row">
+    <div class="col-lg-12">
+        <h2>Teachers</h2>
+        @{
+            Html.RenderPartial("_ListTeacher", Model.TeacherAdminDesks);
+        }
+    </div>
+</div>

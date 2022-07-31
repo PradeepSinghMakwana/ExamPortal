@@ -1,0 +1,162 @@
+﻿@model ExamPortal.Models.ViewModels.TestVM
+
+@{
+    ViewBag.Title = "Create";
+}
+<style>
+    td.dateContainTest {
+        border: none !important;
+        padding: 1px 0 1px 1px !important;
+        background: none !important;
+        overflow: hidden;
+    }
+    td.dateContainTest a {
+        background: blue !important;
+        border: 1px #88a276 solid !important;
+        color:white!important;
+    }
+    .dateContainTest a {
+        background-color: #99dd73;
+        color: white;
+    }
+    option:disabled {
+        color: lightgrey;
+    }
+</style>
+<link href="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.11.4/jquery-ui.css" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/datepicker/0.6.5/datepicker.min.css" />
+<script src="https://cdnjs.cloudflare.com/ajax/libs/datepicker/0.6.5/datepicker.min.js" type="text/javascript"></script>-->
+@section Scripts {
+    <script type="text/javascript">
+        var array = @Html.Raw(Model.datesContainingTest);
+        var instDate = new Date();
+        $('#dateOfTest').datepicker({
+            changeMonth: true,
+            changeYear: true,
+            dateFormat: 'dd-mm-yy',
+            yearRange: (new Date()).getFullYear.toString + ':' + ((new Date()).getFullYear + 5).toString,
+            beforeShowDay: function (date) {
+                var string = jQuery.datepicker.formatDate('dd-mm-yy', date);
+                return array.indexOf(string) != -1 ? [true,'dateContainTest','having other tests'] : (date.getDay() != 0)?[true]:[false, '','Holiday'];
+            }
+        });
+
+    </script>
+    <script type="text/javascript">
+            $('#dateOfTest').change(function () {
+                var selectedDate = $("#dateOfTest").val();
+                var startTimesSelect = $('#StartTimeOfTest');
+                startTimesSelect.empty();
+                if (selectedDate != null && selectedDate != '') {
+                    $.getJSON('@Url.Action("GetStartTimes")', { date: selectedDate }, function (times) {
+                        if (times != null && !jQuery.isEmptyObject(times))
+                        {
+                            var start = false;
+                            $.each(times, function (index, time) {
+                                startTimesSelect.append($('<option/>', {
+                                    value: time.Value,
+                                    text: time.Text,
+                                    disabled: !time.Value
+                                }));
+                                if ((!start) && (time.Value != null)) {
+                                    $('#StartTimeOfTest').val(time.Value);
+                                    start = true;
+                                }
+                            });
+                        };
+                    });
+                }
+        });
+
+        $('#StartTimeOfTest').change(function () {
+            var selectedDate = $("#dateOfTest").val();
+                var selectedStartTime = $('#StartTimeOfTest').val();
+                var endTimesSelect = $('#EndTimeOfTest');
+                endTimesSelect.empty();
+            if (selectedStartTime != null && selectedStartTime != '') {
+                $.getJSON('@Url.Action("GetEndTimes")', { startTime: selectedStartTime }, function (times) {
+                        if (times != null && !jQuery.isEmptyObject(times))
+                        {
+                            $.each(times, function (index, time) {
+                                endTimesSelect.append($('<option/>', {
+                                    value: time.Value,
+                                    text: time.Text,
+                                    disabled: !time.Value
+                                }));
+                            });
+                        };
+                    });
+                }
+        });
+        $('#dateOfTest').trigger('change');
+    </script>
+}
+<h2>Create</h2>
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+
+<div class="form-horizontal">
+    <h4>Test</h4>
+    <hr />
+    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+    <div class="form-group">
+        @Html.LabelFor(model => model.test_name, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.EditorFor(model => model.test_name, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.test_name, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.description, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.EditorFor(model => model.description, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.description, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(x => Model.Subject, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.DropDownListFor(x => Model.subject_code, new SelectList(Model.Subjects, "Value", "Text"), htmlAttributes: new { @class = "form-control", id = "Subject" })
+            @Html.ValidationMessageFor(x => x.subject_code, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.dateOfTest, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.TextBoxFor(model => model.dateOfTest, new { @Value = Model.dateOfTest.ToString("dd-MM-yyyy"), @class = "form-control datepicker" })
+            @Html.ValidationMessageFor(model => model.dateOfTest, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(x => Model.StartTimeOfTests, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.DropDownListFor(x => Model.startTimeOfTest, new SelectList(Model.StartTimeOfTests, "Value", "Text"), htmlAttributes: new { @class = "form-control", id = "StartTimeOfTest" })
+            @Html.ValidationMessageFor(x => x.startTimeOfTest, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(x => Model.EndTimeOfTests, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.DropDownListFor(x => Model.endTimeOfTest, new SelectList(Model.EndTimeOfTests, "Value", "Text"), htmlAttributes: new { @class = "form-control", id = "EndTimeOfTest" })
+            @Html.ValidationMessageFor(x => x.endTimeOfTest, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="form-group">
+        <div class="col-md-offset-2 col-md-10">
+            <input type="submit" value="Create" class="btn btn-success" />
+        </div>
+    </div>
+</div>
+}
+
+<div>
+    @Html.ActionLink("Suspend Creating Test For Now", "Index", new { }, new { @class = "btn btn-warning" })
+</div>

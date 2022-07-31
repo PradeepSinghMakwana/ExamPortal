@@ -1,0 +1,45 @@
+﻿@model IEnumerable<ExamPortal.Models.Subjects_In_10th>
+
+@{
+    ViewBag.Title = "Index";
+}
+<script src="//code.jquery.com/jquery-2.1.1.min.js" type="text/javascript"></script>
+<script>
+    $(function () {
+        $("#right-sidebar .list-group").find("a").removeClass('active');
+        $('#right-sidebar .list-group a:contains("Manage Subjects in 10th")').addClass("active");
+    });
+</script>
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "CreateSubjects_In_10th","Admins",new { }, new { @class = "btn btn-primary" })
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.subject_code)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.subject_name)
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.subject_code)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.subject_name)
+            </td>
+            <td>
+                @Html.ActionLink("Edit", "EditSubjects_In_10th","Admins", new { id = item.subject_code }, new { @class = "btn btn-primary" }) |
+                @Html.ActionLink("Delete", "DeleteSubjects_In_10th","Admins", new { id = item.subject_code }, new { @class = "btn btn-danger" })
+            </td>
+        </tr>
+    }
+
+</table>

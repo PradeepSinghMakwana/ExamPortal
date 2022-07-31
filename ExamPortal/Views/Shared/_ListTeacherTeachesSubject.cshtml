@@ -1,0 +1,51 @@
+﻿@model List<Object[]>
+@using ExamPortal.Models
+@using ExamPortal.Models.ViewModels
+@{ string selectedTeaches = null;
+    var c = Request.QueryString["class"];
+    var t = Request.QueryString["teacher"];
+    var s = Request.QueryString["subject"];
+}
+@if ((c != null)&& (t != null)&& (s != null))
+{
+    selectedTeaches = (c.ToString()+","+t.ToString()+","+ s.ToString());
+}
+<div class="row">
+    <div class="col-lg-4">
+        Class
+    </div>
+    <div class="col-lg-4">
+        Teacher
+    </div>
+    <div class="col-lg-4">
+        Subject
+    </div>
+</div>
+@foreach (var item in Model)
+{
+    string classId = ((ClassVM)item[0]).class_id.ToString();
+    string facultyId = ((Teacher)item[1]).faculty_id.ToString();
+    string subjectCode = ((Subject)item[2]).subject_code.ToString();
+    string teaches = classId + "," + facultyId + "," + subjectCode;
+    string className = ((ClassVM)item[0]).Pretty_Class_name;
+    string facultyName = ((Teacher)item[1]).faculty_name;
+    string subjectName = ((Subject)item[2]).subject_name;
+    string activeClass = "";
+    if ((selectedTeaches!=null)&&(selectedTeaches.Equals(teaches)))
+    {
+        activeClass = "active";
+    }
+
+        <a href="?class=@classId&teacher=@facultyId&subject=@subjectCode" data-class="@classId" data-teacher="@facultyId" data-subject="@subjectCode" class="list-group-item @activeClass row">
+            <div class="list-group-item-text col-lg-4">
+                @className
+            </div>
+            <div class="list-group-item-text col-lg-4">
+                @facultyName
+            </div>
+            <div class="list-group-item-text col-lg-4">
+                @subjectName
+            </div>
+        </a>
+
+}

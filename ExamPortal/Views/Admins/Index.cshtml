@@ -1,0 +1,45 @@
+﻿@using ExamPortal.Models;
+<style>
+    .col-lg-12,.col-lg-4 {
+        overflow:auto;
+    }
+</style>
+
+@model AdminDeskVM
+
+    <div class="row">
+        <div class="col-lg-12">
+            <h2>Tests</h2>
+            @{
+                Html.RenderPartial("_ListTest", Model.TestAdminDesks);
+            }
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-lg-12">
+            <h2>Teachers</h2>
+            @{
+                Html.RenderPartial("_ListTeacher",Model.TeacherAdminDesks);
+            }
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-lg-4">
+            <h2>Classes</h2>
+            @{
+                Html.RenderPartial("_ListClass",Model.ClassAdminDesks);
+            }
+        </div>
+        <div class="col-lg-4">
+            <h2>Courses</h2>
+            @{
+                Html.RenderPartial("_ListCourses",Model.CourseAdminDesks);
+            }
+        </div>
+        <div class="col-lg-4">
+            <h2>Subjects</h2>
+            @{
+                Html.RenderPartial("_ListSubjects",Model.SubjectAdminDesks);
+            }
+        </div>
+    </div>

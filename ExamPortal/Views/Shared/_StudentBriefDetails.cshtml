@@ -1,0 +1,62 @@
+﻿@model ExamPortal.Models.AssignTestStudentPartial2
+    <fieldset>
+        <legend>Student Brief Profile</legend>
+        <div class="row">
+            <div class="col-lg-2">
+                <img src="~/Resources/StudentsPic/@Model.photo" width="100" height="100" />
+                <h2>@Model.unique_name</h2>
+            </div>
+            <div class="col-lg-6">
+                <table class="table">
+                    <tr>
+                        <th>Subject</th>
+                        <th>marks</th>
+                        <th>last taken</th>
+                    </tr>
+                    @foreach (var item in Model.student_current_qualifications)
+                    {
+                        <tr>
+                            <td>@Html.DisplayFor(modelItem => item.Subject.subject_name)</td>
+                            <td>@Html.DisplayFor(modelItem => item.marks)</td>
+                            <td>@Html.DisplayFor(modelItem => item.last_appeared.ToShortDateString())</td>
+                        </tr>
+                    }
+                </table>
+            </div>
+            <div class="col-lg-4">
+                <dl class="dl-horizontal">
+                    <dt>
+                        Student Mobile
+                    </dt>
+
+                    <dd>
+                        @Model.student_mobile
+                    </dd>
+
+                    <dt>
+                        Parents Phone
+                    </dt>
+
+                    <dd>
+                        @Model.parents_phone
+                    </dd>
+
+                    <dt>
+                        Residential Address
+                    </dt>
+
+                    <dd>
+                        @Model.residential_address
+                    </dd>
+
+                    <dt>
+                        Class Coordinator
+                    </dt>
+
+                    <dd>
+                        @Model.class_coordinator
+                    </dd>
+                </dl>
+            </div>
+        </div>
+    </fieldset>

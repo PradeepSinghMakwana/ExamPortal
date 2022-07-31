@@ -1,0 +1,47 @@
+﻿@model IEnumerable<ExamPortal.Models.Subject>
+@if (((List<string>)Session["role"]).Contains("admin"))
+{
+    <p>
+        @Html.ActionLink("Create New", "CreateSubject","Admins",new { }, new { @class = "btn btn-primary" })
+    </p>
+}
+<table class="table">
+    <tr>
+        @if ((ViewData["multiSelect"] != null) && ((bool)ViewData["multiSelect"] == true))
+        {
+            <th>Select</th>
+        }
+        <th>@Html.DisplayNameFor(model => model.subject_code)</th>
+        <th>@Html.DisplayNameFor(model => model.subject_name)</th>
+        @if (((List<string>)Session["role"]).Contains("admin"))
+        {
+            <th></th>
+        }
+    </tr>
+
+    @foreach (var item in Model)
+    {
+    <tr>
+        @if ((ViewData["multiSelect"] != null) && ((bool)ViewData["multiSelect"] == true))
+        {
+            <td><input type="checkbox" name="selectedSubjects" value="@item.subject_code" /></td>
+        }
+        <td>
+            @Html.DisplayFor(modelItem => item.subject_code)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.subject_name)
+        </td>
+        @if (((List<string>)Session["role"]).Contains("admin"))
+        {
+            <td>
+                @Html.ActionLink("Edit", "EditSubject", "Admins", new { id = item.subject_code }, new { @class = "btn btn-primary" }) |
+                @Html.ActionLink("Delete", "DeleteSubject", "Admins", new { id = item.subject_code }, new { @class = "btn btn-danger" })
+            </td>
+        }
+    </tr>
+    }
+
+</table>
+
+

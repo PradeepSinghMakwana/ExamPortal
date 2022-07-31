@@ -1,0 +1,32 @@
+﻿@using ExamPortal.Models;
+@model StudentProfileVM
+<div class="container">
+    <div class="row">
+        <div class="col-lg-12">
+            @{
+                Html.RenderPartial("_StudentBasicProfile", Model.StudentBasicProfile);
+            }
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-lg-12">
+            @{
+                Html.RenderPartial("_StudentCurrentQualification", Model.Student_Current_Qualifications);
+            }
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-lg-12">
+            @{
+                Html.RenderPartial("_Student12thQualification", Model.Student_12th_Qualifications);
+            }
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-lg-12">
+            @{
+                Html.RenderPartial("_Student10thQualification", Model.Student_10th_Qualifications);
+            }
+        </div>
+    </div>
+</div>

@@ -1,0 +1,49 @@
+﻿@model IEnumerable<ExamPortal.Models.Student_10th_Qualification>
+
+@if ((((List<string>)Session["role"]).Contains("coordinator") && (Model.All(i => i.Student.Class.Teacher.faculty_id == (int)Session["facultyId"]))) || ((List<string>)Session["role"]).Contains("admin"))
+{
+    @Html.ActionLink("Create New", "Create10thQualification","Students",new { },new { @class="btn btn-primary"})
+}
+<fieldset>
+    <legend>10th Qualification</legend>
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12">
+                <table class="table">
+                    <tr>
+                        <th>
+                            @Html.DisplayNameFor(model => model.Subjects_In_10th.subject_name)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.percent_marks)
+                        </th>
+                        @if ((((List<string>)Session["role"]).Contains("coordinator") && (Model.All(i => i.Student.Class.Teacher.faculty_id == (int)Session["facultyId"]))) || ((List<string>)Session["role"]).Contains("admin"))
+                        {
+                            <th></th>
+                        }
+                    </tr>
+                    @foreach (var item in Model)
+                    {
+                        <tr>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Subjects_In_10th.subject_name)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.percent_marks)
+                            </td>
+                            @if ((((List<string>)Session["role"]).Contains("coordinator") && (Model.All(i => i.Student.Class.Teacher.faculty_id == (int)Session["facultyId"]))) || ((List<string>)Session["role"]).Contains("admin"))
+                            {
+                                <td>
+                                    @Html.ActionLink("Edit", "Edit10thQualification","Students", new { id = item.id }, new { @class = "btn btn-primary" }) |
+                                    @Html.ActionLink("Delete", "Delete10thQualification","Teachers", new { id = item.id }, new { @class = "btn btn-danger" })
+                                </td>
+                            }
+                        </tr>
+                    }
+
+                </table>
+            </div>
+        </div>
+    </div>
+</fieldset>
+

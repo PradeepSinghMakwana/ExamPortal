@@ -1,0 +1,19 @@
+﻿@model IEnumerable<ExamPortal.Models.Test>
+
+<table class="table">
+    <tr>
+        <th>scholar no</th>
+        <th>student name</th>
+        <th>students ATKT subjects</th>
+        <th>class</th>
+    </tr>
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>@Html.DisplayFor(modelItem => item.test_id)</td>
+            <td>@Html.DisplayFor(modelItem => item.test_name)</td>
+            <td>@Html.DisplayFor(modelItem => item.start_datetime.ToShortDateString())</td>
+            <td>@Html.DisplayFor(modelItem => item.start_datetime.ToShortTimeString())</td>
+        </tr>
+    }
+</table>

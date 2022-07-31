@@ -1,0 +1,908 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="ExamPortalModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityContainer Name="ExamPortalEntities" annotation:LazyLoadingEnabled="true">
+    <FunctionImport Name="getUnregisteredTests" ReturnType="Collection(ExamPortalModel.getUnregisteredTests_Result)">
+      <Parameter Name="scholar_no" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <EntitySet Name="Classes" EntityType="ExamPortalModel.Class" />
+    <EntitySet Name="Courses" EntityType="ExamPortalModel.Course" />
+    <EntitySet Name="Logers" EntityType="ExamPortalModel.Loger" />
+    <EntitySet Name="Questions" EntityType="ExamPortalModel.Question" />
+    <EntitySet Name="Registered_Candidates" EntityType="ExamPortalModel.Registered_Candidates" />
+    <EntitySet Name="Students" EntityType="ExamPortalModel.Student" />
+    <EntitySet Name="Student_10th_Qualification" EntityType="ExamPortalModel.Student_10th_Qualification" />
+    <EntitySet Name="Student_12th_Qualification" EntityType="ExamPortalModel.Student_12th_Qualification" />
+    <EntitySet Name="Student_Current_Qualification" EntityType="ExamPortalModel.Student_Current_Qualification" />
+    <EntitySet Name="Subjects" EntityType="ExamPortalModel.Subject" />
+    <EntitySet Name="Subjects_In_10th" EntityType="ExamPortalModel.Subjects_In_10th" />
+    <EntitySet Name="Subjects_In_12th" EntityType="ExamPortalModel.Subjects_In_12th" />
+    <EntitySet Name="Teachers" EntityType="ExamPortalModel.Teacher" />
+    <EntitySet Name="Teaches" EntityType="ExamPortalModel.Teach" />
+    <EntitySet Name="Tests" EntityType="ExamPortalModel.Test" />
+    <EntitySet Name="Test_Question" EntityType="ExamPortalModel.Test_Question" />
+    <EntitySet Name="UserRoles" EntityType="ExamPortalModel.UserRole" />
+    <EntitySet Name="Student_Test_Record" EntityType="ExamPortalModel.Student_Test_Record" />
+    <EntitySet Name="AdminLogins" EntityType="ExamPortalModel.AdminLogin" />
+    <EntitySet Name="ClassAdminDesks" EntityType="ExamPortalModel.ClassAdminDesk" />
+    <EntitySet Name="CourseAdminDesks" EntityType="ExamPortalModel.CourseAdminDesk" />
+    <EntitySet Name="StudentLogins" EntityType="ExamPortalModel.StudentLogin" />
+    <EntitySet Name="SubjectAdminDesks" EntityType="ExamPortalModel.SubjectAdminDesk" />
+    <EntitySet Name="TeacherLogins" EntityType="ExamPortalModel.TeacherLogin" />
+    <EntitySet Name="UnapprovedResults" EntityType="ExamPortalModel.UnapprovedResult" />
+    <EntitySet Name="UnassignedTests" EntityType="ExamPortalModel.UnassignedTest" />
+    <EntitySet Name="UnregisteredTests" EntityType="ExamPortalModel.UnregisteredTest" />
+    <AssociationSet Name="FK_Class_Course" Association="ExamPortalModel.FK_Class_Course">
+      <End Role="Course" EntitySet="Courses" />
+      <End Role="Class" EntitySet="Classes" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Class_Teacher" Association="ExamPortalModel.FK_Class_Teacher">
+      <End Role="Teacher" EntitySet="Teachers" />
+      <End Role="Class" EntitySet="Classes" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Student_Class" Association="ExamPortalModel.FK_Student_Class">
+      <End Role="Class" EntitySet="Classes" />
+      <End Role="Student" EntitySet="Students" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Teaches_Class" Association="ExamPortalModel.FK_Teaches_Class">
+      <End Role="Class" EntitySet="Classes" />
+      <End Role="Teach" EntitySet="Teaches" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Question_Subject" Association="ExamPortalModel.FK_Question_Subject">
+      <End Role="Subject" EntitySet="Subjects" />
+      <End Role="Question" EntitySet="Questions" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Test_Question_Question" Association="ExamPortalModel.FK_Test_Question_Question">
+      <End Role="Question" EntitySet="Questions" />
+      <End Role="Test_Question" EntitySet="Test_Question" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Registered_Candidates_Student" Association="ExamPortalModel.FK_Registered_Candidates_Student">
+      <End Role="Student" EntitySet="Students" />
+      <End Role="Registered_Candidates" EntitySet="Registered_Candidates" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Registered_Candidates_Test" Association="ExamPortalModel.FK_Registered_Candidates_Test">
+      <End Role="Test" EntitySet="Tests" />
+      <End Role="Registered_Candidates" EntitySet="Registered_Candidates" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Student_10th_Qualification_Student" Association="ExamPortalModel.FK_Student_10th_Qualification_Student">
+      <End Role="Student" EntitySet="Students" />
+      <End Role="Student_10th_Qualification" EntitySet="Student_10th_Qualification" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Student_12th_Qualification_Student" Association="ExamPortalModel.FK_Student_12th_Qualification_Student">
+      <End Role="Student" EntitySet="Students" />
+      <End Role="Student_12th_Qualification" EntitySet="Student_12th_Qualification" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Student_Current_Qualification_Student" Association="ExamPortalModel.FK_Student_Current_Qualification_Student">
+      <End Role="Student" EntitySet="Students" />
+      <End Role="Student_Current_Qualification" EntitySet="Student_Current_Qualification" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Student_10th_Qualification_Subjects_In_10th" Association="ExamPortalModel.FK_Student_10th_Qualification_Subjects_In_10th">
+      <End Role="Subjects_In_10th" EntitySet="Subjects_In_10th" />
+      <End Role="Student_10th_Qualification" EntitySet="Student_10th_Qualification" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Student_12th_Qualification_Subjects_In_12th" Association="ExamPortalModel.FK_Student_12th_Qualification_Subjects_In_12th">
+      <End Role="Subjects_In_12th" EntitySet="Subjects_In_12th" />
+      <End Role="Student_12th_Qualification" EntitySet="Student_12th_Qualification" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Student_Current_Qualification_Subject" Association="ExamPortalModel.FK_Student_Current_Qualification_Subject">
+      <End Role="Subject" EntitySet="Subjects" />
+      <End Role="Student_Current_Qualification" EntitySet="Student_Current_Qualification" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Teaches_Subject" Association="ExamPortalModel.FK_Teaches_Subject">
+      <End Role="Subject" EntitySet="Subjects" />
+      <End Role="Teach" EntitySet="Teaches" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Test_Subject" Association="ExamPortalModel.FK_Test_Subject">
+      <End Role="Subject" EntitySet="Subjects" />
+      <End Role="Test" EntitySet="Tests" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Teaches_Teacher" Association="ExamPortalModel.FK_Teaches_Teacher">
+      <End Role="Teacher" EntitySet="Teachers" />
+      <End Role="Teach" EntitySet="Teaches" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Test_Teacher" Association="ExamPortalModel.FK_Test_Teacher">
+      <End Role="Teacher" EntitySet="Teachers" />
+      <End Role="Test" EntitySet="Tests" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Test_Question_Test" Association="ExamPortalModel.FK_Test_Question_Test">
+      <End Role="Test" EntitySet="Tests" />
+      <End Role="Test_Question" EntitySet="Test_Question" />
+    </AssociationSet>
+    <AssociationSet Name="Assigned_Test" Association="ExamPortalModel.Assigned_Test">
+      <End Role="Student" EntitySet="Students" />
+      <End Role="Test" EntitySet="Tests" />
+    </AssociationSet>
+    <EntitySet Name="UserLogins" EntityType="ExamPortalModel.UserLogin" />
+    <AssociationSet Name="FK_Question_Users" Association="ExamPortalModel.FK_Question_Users">
+      <End Role="UserLogin" EntitySet="UserLogins" />
+      <End Role="Question" EntitySet="Questions" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Student_Users" Association="ExamPortalModel.FK_Student_Users">
+      <End Role="UserLogin" EntitySet="UserLogins" />
+      <End Role="Student" EntitySet="Students" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Teacher_Users" Association="ExamPortalModel.FK_Teacher_Users">
+      <End Role="UserLogin" EntitySet="UserLogins" />
+      <End Role="Teacher" EntitySet="Teachers" />
+    </AssociationSet>
+    <AssociationSet Name="FK_UserRole_Users" Association="ExamPortalModel.FK_UserRole_Users">
+      <End Role="UserLogin" EntitySet="UserLogins" />
+      <End Role="UserRole" EntitySet="UserRoles" />
+    </AssociationSet>
+    <EntitySet Name="TeacherAdminDesks" EntityType="ExamPortalModel.TeacherAdminDesk" />
+    <AssociationSet Name="FK_Question_Teacher" Association="ExamPortalModel.FK_Question_Teacher">
+      <End Role="Teacher" EntitySet="Teachers" />
+      <End Role="Question" EntitySet="Questions" />
+    </AssociationSet>
+    <EntitySet Name="TempCreatedTests" EntityType="ExamPortalModel.TempCreatedTest" />
+    <AssociationSet Name="FK_TempCreatedTest_Question" Association="ExamPortalModel.FK_TempCreatedTest_Question">
+      <End Role="Question" EntitySet="Questions" />
+      <End Role="TempCreatedTest" EntitySet="TempCreatedTests" />
+    </AssociationSet>
+    <AssociationSet Name="FK_TempCreatedTest_Teacher" Association="ExamPortalModel.FK_TempCreatedTest_Teacher">
+      <End Role="Teacher" EntitySet="Teachers" />
+      <End Role="TempCreatedTest" EntitySet="TempCreatedTests" />
+    </AssociationSet>
+  </EntityContainer>
+  <ComplexType Name="getUnregisteredTests_Result">
+    <Property Type="Int32" Name="test_id" Nullable="false" />
+    <Property Type="String" Name="test_name" Nullable="false" MaxLength="100" />
+    <Property Type="String" Name="subject_name" Nullable="false" MaxLength="100" />
+    <Property Type="String" Name="creator" Nullable="false" MaxLength="50" />
+    <Property Type="DateTime" Name="date" Nullable="true" />
+    <Property Type="Time" Name="start_time" Nullable="true" />
+    <Property Type="DateTime" Name="end_time" Nullable="true" />
+  </ComplexType>
+  <EntityType Name="Class">
+    <Key>
+      <PropertyRef Name="class_id" />
+    </Key>
+    <Property Name="course_name" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="class_coordinator" Type="Int32" Nullable="false" />
+    <Property Name="year" Type="Byte" Nullable="false" />
+    <Property Name="semester" Type="Byte" Nullable="false" />
+    <Property Name="class_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <NavigationProperty Name="Course" Relationship="ExamPortalModel.FK_Class_Course" FromRole="Class" ToRole="Course" />
+    <NavigationProperty Name="Teacher" Relationship="ExamPortalModel.FK_Class_Teacher" FromRole="Class" ToRole="Teacher" />
+    <NavigationProperty Name="Students" Relationship="ExamPortalModel.FK_Student_Class" FromRole="Class" ToRole="Student" />
+    <NavigationProperty Name="Teaches" Relationship="ExamPortalModel.FK_Teaches_Class" FromRole="Class" ToRole="Teach" />
+  </EntityType>
+  <EntityType Name="Course">
+    <Key>
+      <PropertyRef Name="course_name" />
+    </Key>
+    <Property Name="course_name" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="Classes" Relationship="ExamPortalModel.FK_Class_Course" FromRole="Course" ToRole="Class" />
+  </EntityType>
+  <EntityType Name="Loger">
+    <Key>
+      <PropertyRef Name="log_id" />
+    </Key>
+    <Property Name="description" Type="String" Nullable="false" MaxLength="1000" FixedLength="false" Unicode="true" />
+    <Property Name="category" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="log_datetime" Type="DateTime" Nullable="false" Precision="0" />
+    <Property Name="log_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+  </EntityType>
+  <EntityType Name="Question">
+    <Key>
+      <PropertyRef Name="q_id" />
+    </Key>
+    <Property Name="q_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="subject_code" Type="Int32" Nullable="false" />
+    <Property Name="question_text" Type="String" Nullable="false" MaxLength="500" FixedLength="false" Unicode="true" />
+    <Property Name="option1" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+    <Property Name="option2" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+    <Property Name="option3" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+    <Property Name="option4" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+    <Property Name="is_option1_correct" Type="Boolean" />
+    <Property Name="is_option2_correct" Type="Boolean" />
+    <Property Name="is_option3_correct" Type="Boolean" />
+    <Property Name="is_option4_correct" Type="Boolean" />
+    <Property Name="topic" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="difficulty_level" Type="Byte" />
+    <Property Name="creator" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="Subject" Relationship="ExamPortalModel.FK_Question_Subject" FromRole="Question" ToRole="Subject" />
+    <NavigationProperty Name="Test_Question" Relationship="ExamPortalModel.FK_Test_Question_Question" FromRole="Question" ToRole="Test_Question" />
+    <NavigationProperty Name="UserLogin" Relationship="ExamPortalModel.FK_Question_Users" FromRole="Question" ToRole="UserLogin" />
+    <NavigationProperty Name="Teacher" Relationship="ExamPortalModel.FK_Question_Teacher" FromRole="Question" ToRole="Teacher" />
+    <NavigationProperty Name="TempCreatedTests" Relationship="ExamPortalModel.FK_TempCreatedTest_Question" FromRole="Question" ToRole="TempCreatedTest" />
+  </EntityType>
+  <EntityType Name="Registered_Candidates">
+    <Key>
+      <PropertyRef Name="test_id" />
+      <PropertyRef Name="scholar_no" />
+    </Key>
+    <Property Name="test_id" Type="Int32" Nullable="false" />
+    <Property Name="scholar_no" Type="Int32" Nullable="false" />
+    <Property Name="approved" Type="Boolean" Nullable="false" />
+    <Property Name="marks" Type="Decimal" Precision="4" Scale="2" />
+    <NavigationProperty Name="Student" Relationship="ExamPortalModel.FK_Registered_Candidates_Student" FromRole="Registered_Candidates" ToRole="Student" />
+    <NavigationProperty Name="Test" Relationship="ExamPortalModel.FK_Registered_Candidates_Test" FromRole="Registered_Candidates" ToRole="Test" />
+  </EntityType>
+  <EntityType Name="Student">
+    <Key>
+      <PropertyRef Name="scholar_no" />
+    </Key>
+    <Property Name="scholar_no" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="unique_name" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="parents_phone" Type="Decimal" Nullable="false" Precision="12" Scale="0" />
+    <Property Name="mobile" Type="Decimal" Nullable="false" Precision="10" Scale="0" />
+    <Property Name="photo" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="enrollment_no" Type="String" MaxLength="13" FixedLength="true" Unicode="true" />
+    <Property Name="residential_address" Type="String" Nullable="false" MaxLength="200" FixedLength="false" Unicode="true" />
+    <Property Name="permanent_address" Type="String" Nullable="false" MaxLength="200" FixedLength="false" Unicode="true" />
+    <Property Name="fathers_name" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="mothers_name" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="adhar_no" Type="Decimal" Nullable="false" Precision="12" Scale="0" />
+    <Property Name="blood_group" Type="String" Nullable="false" MaxLength="5" FixedLength="false" Unicode="true" />
+    <Property Name="dob" Type="DateTime" Nullable="false" Precision="0" />
+    <Property Name="class_id" Type="Int32" Nullable="false" />
+    <Property Name="user_id" Type="Int32" Nullable="false" />
+    <Property Name="is_valid_student" Type="Boolean" />
+    <NavigationProperty Name="Class" Relationship="ExamPortalModel.FK_Student_Class" FromRole="Student" ToRole="Class" />
+    <NavigationProperty Name="Registered_Candidates" Relationship="ExamPortalModel.FK_Registered_Candidates_Student" FromRole="Student" ToRole="Registered_Candidates" />
+    <NavigationProperty Name="Student_10th_Qualification" Relationship="ExamPortalModel.FK_Student_10th_Qualification_Student" FromRole="Student" ToRole="Student_10th_Qualification" />
+    <NavigationProperty Name="Student_12th_Qualification" Relationship="ExamPortalModel.FK_Student_12th_Qualification_Student" FromRole="Student" ToRole="Student_12th_Qualification" />
+    <NavigationProperty Name="Student_Current_Qualification" Relationship="ExamPortalModel.FK_Student_Current_Qualification_Student" FromRole="Student" ToRole="Student_Current_Qualification" />
+    <NavigationProperty Name="Tests" Relationship="ExamPortalModel.Assigned_Test" FromRole="Student" ToRole="Test" />
+    <NavigationProperty Name="UserLogin" Relationship="ExamPortalModel.FK_Student_Users" FromRole="Student" ToRole="UserLogin" />
+  </EntityType>
+  <EntityType Name="Student_10th_Qualification">
+    <Key>
+      <PropertyRef Name="scholar_no" />
+      <PropertyRef Name="subject_code" />
+    </Key>
+    <Property Name="scholar_no" Type="Int32" Nullable="false" />
+    <Property Name="subject_code" Type="Int32" Nullable="false" />
+    <Property Name="percent_marks" Type="Decimal" Nullable="false" Precision="4" Scale="4" />
+    <NavigationProperty Name="Student" Relationship="ExamPortalModel.FK_Student_10th_Qualification_Student" FromRole="Student_10th_Qualification" ToRole="Student" />
+    <NavigationProperty Name="Subjects_In_10th" Relationship="ExamPortalModel.FK_Student_10th_Qualification_Subjects_In_10th" FromRole="Student_10th_Qualification" ToRole="Subjects_In_10th" />
+  </EntityType>
+  <EntityType Name="Student_12th_Qualification">
+    <Key>
+      <PropertyRef Name="scholar_no" />
+      <PropertyRef Name="subject_code" />
+    </Key>
+    <Property Name="scholar_no" Type="Int32" Nullable="false" />
+    <Property Name="subject_code" Type="Int32" Nullable="false" />
+    <Property Name="percent_marks" Type="Decimal" Nullable="false" Precision="4" Scale="4" />
+    <NavigationProperty Name="Student" Relationship="ExamPortalModel.FK_Student_12th_Qualification_Student" FromRole="Student_12th_Qualification" ToRole="Student" />
+    <NavigationProperty Name="Subjects_In_12th" Relationship="ExamPortalModel.FK_Student_12th_Qualification_Subjects_In_12th" FromRole="Student_12th_Qualification" ToRole="Subjects_In_12th" />
+  </EntityType>
+  <EntityType Name="Student_Current_Qualification">
+    <Key>
+      <PropertyRef Name="scholar_no" />
+      <PropertyRef Name="subject_code" />
+    </Key>
+    <Property Name="scholar_no" Type="Int32" Nullable="false" />
+    <Property Name="subject_code" Type="Int32" Nullable="false" />
+    <Property Name="marks" Type="Decimal" Nullable="false" Precision="4" Scale="2" />
+    <Property Name="last_appeared" Type="DateTime" Nullable="false" Precision="0" />
+    <NavigationProperty Name="Student" Relationship="ExamPortalModel.FK_Student_Current_Qualification_Student" FromRole="Student_Current_Qualification" ToRole="Student" />
+    <NavigationProperty Name="Subject" Relationship="ExamPortalModel.FK_Student_Current_Qualification_Subject" FromRole="Student_Current_Qualification" ToRole="Subject" />
+  </EntityType>
+  <EntityType Name="Subject">
+    <Key>
+      <PropertyRef Name="subject_code" />
+    </Key>
+    <Property Name="subject_code" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="subject_name" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="Questions" Relationship="ExamPortalModel.FK_Question_Subject" FromRole="Subject" ToRole="Question" />
+    <NavigationProperty Name="Student_Current_Qualification" Relationship="ExamPortalModel.FK_Student_Current_Qualification_Subject" FromRole="Subject" ToRole="Student_Current_Qualification" />
+    <NavigationProperty Name="Teaches" Relationship="ExamPortalModel.FK_Teaches_Subject" FromRole="Subject" ToRole="Teach" />
+    <NavigationProperty Name="Tests" Relationship="ExamPortalModel.FK_Test_Subject" FromRole="Subject" ToRole="Test" />
+  </EntityType>
+  <EntityType Name="Subjects_In_10th">
+    <Key>
+      <PropertyRef Name="subject_code" />
+    </Key>
+    <Property Name="subject_code" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="subject_name" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="Student_10th_Qualification" Relationship="ExamPortalModel.FK_Student_10th_Qualification_Subjects_In_10th" FromRole="Subjects_In_10th" ToRole="Student_10th_Qualification" />
+  </EntityType>
+  <EntityType Name="Subjects_In_12th">
+    <Key>
+      <PropertyRef Name="subject_code" />
+    </Key>
+    <Property Name="subject_code" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="subject_name" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="Student_12th_Qualification" Relationship="ExamPortalModel.FK_Student_12th_Qualification_Subjects_In_12th" FromRole="Subjects_In_12th" ToRole="Student_12th_Qualification" />
+  </EntityType>
+  <EntityType Name="Teacher">
+    <Key>
+      <PropertyRef Name="faculty_id" />
+    </Key>
+    <Property Name="faculty_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="faculty_name" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="graduate" Type="String" Nullable="false" MaxLength="200" FixedLength="false" Unicode="true" />
+    <Property Name="post_graduate" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+    <Property Name="year_graduated" Type="Decimal" Nullable="false" Precision="5" Scale="0" />
+    <Property Name="year_post_graduated" Type="Decimal" Precision="5" Scale="0" />
+    <Property Name="dob" Type="DateTime" Nullable="false" Precision="0" />
+    <Property Name="blood_group" Type="String" Nullable="false" MaxLength="5" FixedLength="false" Unicode="true" />
+    <Property Name="residential_address" Type="String" Nullable="false" MaxLength="200" FixedLength="false" Unicode="true" />
+    <Property Name="mobile" Type="Decimal" Nullable="false" Precision="10" Scale="0" />
+    <Property Name="user_id" Type="Int32" Nullable="false" />
+    <Property Name="served" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="Classes" Relationship="ExamPortalModel.FK_Class_Teacher" FromRole="Teacher" ToRole="Class" />
+    <NavigationProperty Name="Teaches" Relationship="ExamPortalModel.FK_Teaches_Teacher" FromRole="Teacher" ToRole="Teach" />
+    <NavigationProperty Name="Tests" Relationship="ExamPortalModel.FK_Test_Teacher" FromRole="Teacher" ToRole="Test" />
+    <NavigationProperty Name="UserLogin" Relationship="ExamPortalModel.FK_Teacher_Users" FromRole="Teacher" ToRole="UserLogin" />
+    <NavigationProperty Name="Questions" Relationship="ExamPortalModel.FK_Question_Teacher" FromRole="Teacher" ToRole="Question" />
+    <NavigationProperty Name="TempCreatedTests" Relationship="ExamPortalModel.FK_TempCreatedTest_Teacher" FromRole="Teacher" ToRole="TempCreatedTest" />
+  </EntityType>
+  <EntityType Name="Teach">
+    <Key>
+      <PropertyRef Name="faculty_id" />
+      <PropertyRef Name="class_id" />
+      <PropertyRef Name="subject_code" />
+    </Key>
+    <Property Name="faculty_id" Type="Int32" Nullable="false" />
+    <Property Name="class_id" Type="Int32" Nullable="false" />
+    <Property Name="subject_code" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="Class" Relationship="ExamPortalModel.FK_Teaches_Class" FromRole="Teach" ToRole="Class" />
+    <NavigationProperty Name="Subject" Relationship="ExamPortalModel.FK_Teaches_Subject" FromRole="Teach" ToRole="Subject" />
+    <NavigationProperty Name="Teacher" Relationship="ExamPortalModel.FK_Teaches_Teacher" FromRole="Teach" ToRole="Teacher" />
+  </EntityType>
+  <EntityType Name="Test">
+    <Key>
+      <PropertyRef Name="test_id" />
+    </Key>
+    <Property Name="test_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="test_name" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="description" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+    <Property Name="start_datetime" Type="DateTime" Nullable="false" Precision="0" />
+    <Property Name="end_datetime" Type="DateTime" Nullable="false" Precision="0" />
+    <Property Name="creator" Type="Int32" Nullable="false" />
+    <Property Name="subject_code" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="Registered_Candidates" Relationship="ExamPortalModel.FK_Registered_Candidates_Test" FromRole="Test" ToRole="Registered_Candidates" />
+    <NavigationProperty Name="Subject" Relationship="ExamPortalModel.FK_Test_Subject" FromRole="Test" ToRole="Subject" />
+    <NavigationProperty Name="Teacher" Relationship="ExamPortalModel.FK_Test_Teacher" FromRole="Test" ToRole="Teacher" />
+    <NavigationProperty Name="Test_Question" Relationship="ExamPortalModel.FK_Test_Question_Test" FromRole="Test" ToRole="Test_Question" />
+    <NavigationProperty Name="Students" Relationship="ExamPortalModel.Assigned_Test" FromRole="Test" ToRole="Student" />
+  </EntityType>
+  <EntityType Name="Test_Question">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="test_id" Type="Int32" Nullable="false" />
+    <Property Name="question_id" Type="Int32" Nullable="false" />
+    <Property Name="unit" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="Question" Relationship="ExamPortalModel.FK_Test_Question_Question" FromRole="Test_Question" ToRole="Question" />
+    <NavigationProperty Name="Test" Relationship="ExamPortalModel.FK_Test_Question_Test" FromRole="Test_Question" ToRole="Test" />
+  </EntityType>
+  <EntityType Name="UserRole">
+    <Key>
+      <PropertyRef Name="user_id" />
+      <PropertyRef Name="role" />
+    </Key>
+    <Property Name="user_id" Type="Int32" Nullable="false" />
+    <Property Name="role" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="UserLogin" Relationship="ExamPortalModel.FK_UserRole_Users" FromRole="UserRole" ToRole="UserLogin" />
+  </EntityType>
+  <EntityType Name="Student_Test_Record">
+    <Key>
+      <PropertyRef Name="test_id" />
+      <PropertyRef Name="scholar_no" />
+      <PropertyRef Name="q_id" />
+      <PropertyRef Name="q_virtual_id" />
+      <PropertyRef Name="question_text" />
+      <PropertyRef Name="record_datetime" />
+    </Key>
+    <Property Name="test_id" Type="Int32" Nullable="false" />
+    <Property Name="scholar_no" Type="Int32" Nullable="false" />
+    <Property Name="q_id" Type="Int32" Nullable="false" />
+    <Property Name="q_virtual_id" Type="Int32" Nullable="false" />
+    <Property Name="question_text" Type="String" Nullable="false" MaxLength="500" FixedLength="false" Unicode="true" />
+    <Property Name="option1" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+    <Property Name="option2" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+    <Property Name="option3" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+    <Property Name="option4" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+    <Property Name="is_option1_correct" Type="Boolean" />
+    <Property Name="is_option2_correct" Type="Boolean" />
+    <Property Name="is_option3_correct" Type="Boolean" />
+    <Property Name="is_option4_correct" Type="Boolean" />
+    <Property Name="is_student_selected_option1" Type="Boolean" />
+    <Property Name="is_student_selected_option2" Type="Boolean" />
+    <Property Name="is_student_selected_option3" Type="Boolean" />
+    <Property Name="is_student_selected_option4" Type="Boolean" />
+    <Property Name="record_datetime" Type="DateTime" Nullable="false" Precision="0" />
+  </EntityType>
+  <EntityType Name="AdminLogin">
+    <Key>
+      <PropertyRef Name="user_id" />
+      <PropertyRef Name="username" />
+      <PropertyRef Name="password" />
+      <PropertyRef Name="role" />
+    </Key>
+    <Property Name="user_id" Type="Int32" Nullable="false" />
+    <Property Name="username" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="password" Type="String" Nullable="false" MaxLength="50" FixedLength="true" Unicode="true" />
+    <Property Name="role" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+  </EntityType>
+  <EntityType Name="ClassAdminDesk">
+    <Key>
+      <PropertyRef Name="course_name" />
+      <PropertyRef Name="class_coordinator" />
+      <PropertyRef Name="year" />
+      <PropertyRef Name="semester" />
+      <PropertyRef Name="class_id" />
+    </Key>
+    <Property Name="course_name" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="class_coordinator" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="year" Type="Byte" Nullable="false" />
+    <Property Name="semester" Type="Byte" Nullable="false" />
+    <Property Name="class_id" Type="Int32" Nullable="false" />
+  </EntityType>
+  <EntityType Name="CourseAdminDesk">
+    <Key>
+      <PropertyRef Name="course_name" />
+    </Key>
+    <Property Name="course_name" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
+  </EntityType>
+  <EntityType Name="StudentLogin">
+    <Key>
+      <PropertyRef Name="user_id" />
+      <PropertyRef Name="username" />
+      <PropertyRef Name="password" />
+      <PropertyRef Name="scholar_no" />
+      <PropertyRef Name="role" />
+    </Key>
+    <Property Name="user_id" Type="Int32" Nullable="false" />
+    <Property Name="username" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="password" Type="String" Nullable="false" MaxLength="50" FixedLength="true" Unicode="true" />
+    <Property Name="scholar_no" Type="Int32" Nullable="false" />
+    <Property Name="role" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+  </EntityType>
+  <EntityType Name="SubjectAdminDesk">
+    <Key>
+      <PropertyRef Name="subject_code" />
+      <PropertyRef Name="subject_name" />
+    </Key>
+    <Property Name="subject_code" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="subject_name" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
+  </EntityType>
+  <EntityType Name="TeacherLogin">
+    <Key>
+      <PropertyRef Name="user_id" />
+      <PropertyRef Name="username" />
+      <PropertyRef Name="password" />
+      <PropertyRef Name="role" />
+      <PropertyRef Name="faculty_id" />
+    </Key>
+    <Property Name="user_id" Type="Int32" Nullable="false" />
+    <Property Name="username" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="password" Type="String" Nullable="false" MaxLength="50" FixedLength="true" Unicode="true" />
+    <Property Name="role" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="faculty_id" Type="Int32" Nullable="false" />
+  </EntityType>
+  <EntityType Name="UnapprovedResult">
+    <Key>
+      <PropertyRef Name="unique_name" />
+      <PropertyRef Name="semester" />
+      <PropertyRef Name="year" />
+      <PropertyRef Name="course_name" />
+      <PropertyRef Name="creator" />
+      <PropertyRef Name="subject_name" />
+      <PropertyRef Name="photo" />
+      <PropertyRef Name="test_name" />
+      <PropertyRef Name="approved" />
+      <PropertyRef Name="scholar_no" />
+    </Key>
+    <Property Name="unique_name" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="semester" Type="Byte" Nullable="false" />
+    <Property Name="year" Type="Byte" Nullable="false" />
+    <Property Name="course_name" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="creator" Type="Int32" Nullable="false" />
+    <Property Name="subject_name" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="photo" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="test_name" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="approved" Type="Boolean" Nullable="false" />
+    <Property Name="marks" Type="Decimal" Precision="4" Scale="2" />
+    <Property Name="scholar_no" Type="Int32" Nullable="false" />
+  </EntityType>
+  <EntityType Name="UnassignedTest">
+    <Key>
+      <PropertyRef Name="test_id" />
+      <PropertyRef Name="test_name" />
+      <PropertyRef Name="subject_name" />
+      <PropertyRef Name="creator" />
+    </Key>
+    <Property Name="test_id" Type="Int32" Nullable="false" />
+    <Property Name="test_name" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="description" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+    <Property Name="subject_name" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="date" Type="DateTime" Precision="0" />
+    <Property Name="start_time" Type="Time" Precision="7" />
+    <Property Name="end_time" Type="Time" Precision="7" />
+    <Property Name="creator" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+  </EntityType>
+  <EntityType Name="UnregisteredTest">
+    <Key>
+      <PropertyRef Name="test_id" />
+      <PropertyRef Name="test_name" />
+      <PropertyRef Name="faculty_name" />
+      <PropertyRef Name="subject_name" />
+      <PropertyRef Name="scholar_no" />
+      <PropertyRef Name="registered" />
+    </Key>
+    <Property Name="test_id" Type="Int32" Nullable="false" />
+    <Property Name="test_name" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="description" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+    <Property Name="faculty_name" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="date" Type="DateTime" Precision="0" />
+    <Property Name="start_time" Type="Time" Precision="7" />
+    <Property Name="end_time" Type="Time" Precision="7" />
+    <Property Name="subject_name" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="scholar_no" Type="Int32" Nullable="false" />
+    <Property Name="registered" Type="Int32" Nullable="false" />
+  </EntityType>
+  <Association Name="FK_Class_Course">
+    <End Type="ExamPortalModel.Course" Role="Course" Multiplicity="1" />
+    <End Type="ExamPortalModel.Class" Role="Class" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Course">
+        <PropertyRef Name="course_name" />
+      </Principal>
+      <Dependent Role="Class">
+        <PropertyRef Name="course_name" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Class_Teacher">
+    <End Type="ExamPortalModel.Teacher" Role="Teacher" Multiplicity="1" />
+    <End Type="ExamPortalModel.Class" Role="Class" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Teacher">
+        <PropertyRef Name="faculty_id" />
+      </Principal>
+      <Dependent Role="Class">
+        <PropertyRef Name="class_coordinator" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Student_Class">
+    <End Type="ExamPortalModel.Class" Role="Class" Multiplicity="1" />
+    <End Type="ExamPortalModel.Student" Role="Student" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Class">
+        <PropertyRef Name="class_id" />
+      </Principal>
+      <Dependent Role="Student">
+        <PropertyRef Name="class_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Teaches_Class">
+    <End Type="ExamPortalModel.Class" Role="Class" Multiplicity="1" />
+    <End Type="ExamPortalModel.Teach" Role="Teach" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Class">
+        <PropertyRef Name="class_id" />
+      </Principal>
+      <Dependent Role="Teach">
+        <PropertyRef Name="class_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Question_Subject">
+    <End Type="ExamPortalModel.Subject" Role="Subject" Multiplicity="1" />
+    <End Type="ExamPortalModel.Question" Role="Question" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Subject">
+        <PropertyRef Name="subject_code" />
+      </Principal>
+      <Dependent Role="Question">
+        <PropertyRef Name="subject_code" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Test_Question_Question">
+    <End Type="ExamPortalModel.Question" Role="Question" Multiplicity="1" />
+    <End Type="ExamPortalModel.Test_Question" Role="Test_Question" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Question">
+        <PropertyRef Name="q_id" />
+      </Principal>
+      <Dependent Role="Test_Question">
+        <PropertyRef Name="question_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Registered_Candidates_Student">
+    <End Type="ExamPortalModel.Student" Role="Student" Multiplicity="1" />
+    <End Type="ExamPortalModel.Registered_Candidates" Role="Registered_Candidates" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Student">
+        <PropertyRef Name="scholar_no" />
+      </Principal>
+      <Dependent Role="Registered_Candidates">
+        <PropertyRef Name="scholar_no" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Registered_Candidates_Test">
+    <End Type="ExamPortalModel.Test" Role="Test" Multiplicity="1" />
+    <End Type="ExamPortalModel.Registered_Candidates" Role="Registered_Candidates" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Test">
+        <PropertyRef Name="test_id" />
+      </Principal>
+      <Dependent Role="Registered_Candidates">
+        <PropertyRef Name="test_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Student_10th_Qualification_Student">
+    <End Type="ExamPortalModel.Student" Role="Student" Multiplicity="1" />
+    <End Type="ExamPortalModel.Student_10th_Qualification" Role="Student_10th_Qualification" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Student">
+        <PropertyRef Name="scholar_no" />
+      </Principal>
+      <Dependent Role="Student_10th_Qualification">
+        <PropertyRef Name="scholar_no" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Student_12th_Qualification_Student">
+    <End Type="ExamPortalModel.Student" Role="Student" Multiplicity="1" />
+    <End Type="ExamPortalModel.Student_12th_Qualification" Role="Student_12th_Qualification" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Student">
+        <PropertyRef Name="scholar_no" />
+      </Principal>
+      <Dependent Role="Student_12th_Qualification">
+        <PropertyRef Name="scholar_no" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Student_Current_Qualification_Student">
+    <End Type="ExamPortalModel.Student" Role="Student" Multiplicity="1" />
+    <End Type="ExamPortalModel.Student_Current_Qualification" Role="Student_Current_Qualification" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Student">
+        <PropertyRef Name="scholar_no" />
+      </Principal>
+      <Dependent Role="Student_Current_Qualification">
+        <PropertyRef Name="scholar_no" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Student_10th_Qualification_Subjects_In_10th">
+    <End Type="ExamPortalModel.Subjects_In_10th" Role="Subjects_In_10th" Multiplicity="1" />
+    <End Type="ExamPortalModel.Student_10th_Qualification" Role="Student_10th_Qualification" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Subjects_In_10th">
+        <PropertyRef Name="subject_code" />
+      </Principal>
+      <Dependent Role="Student_10th_Qualification">
+        <PropertyRef Name="subject_code" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Student_12th_Qualification_Subjects_In_12th">
+    <End Type="ExamPortalModel.Subjects_In_12th" Role="Subjects_In_12th" Multiplicity="1" />
+    <End Type="ExamPortalModel.Student_12th_Qualification" Role="Student_12th_Qualification" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Subjects_In_12th">
+        <PropertyRef Name="subject_code" />
+      </Principal>
+      <Dependent Role="Student_12th_Qualification">
+        <PropertyRef Name="subject_code" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Student_Current_Qualification_Subject">
+    <End Type="ExamPortalModel.Subject" Role="Subject" Multiplicity="1" />
+    <End Type="ExamPortalModel.Student_Current_Qualification" Role="Student_Current_Qualification" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Subject">
+        <PropertyRef Name="subject_code" />
+      </Principal>
+      <Dependent Role="Student_Current_Qualification">
+        <PropertyRef Name="subject_code" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Teaches_Subject">
+    <End Type="ExamPortalModel.Subject" Role="Subject" Multiplicity="1" />
+    <End Type="ExamPortalModel.Teach" Role="Teach" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Subject">
+        <PropertyRef Name="subject_code" />
+      </Principal>
+      <Dependent Role="Teach">
+        <PropertyRef Name="subject_code" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Test_Subject">
+    <End Type="ExamPortalModel.Subject" Role="Subject" Multiplicity="1" />
+    <End Type="ExamPortalModel.Test" Role="Test" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Subject">
+        <PropertyRef Name="subject_code" />
+      </Principal>
+      <Dependent Role="Test">
+        <PropertyRef Name="subject_code" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Teaches_Teacher">
+    <End Type="ExamPortalModel.Teacher" Role="Teacher" Multiplicity="1" />
+    <End Type="ExamPortalModel.Teach" Role="Teach" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Teacher">
+        <PropertyRef Name="faculty_id" />
+      </Principal>
+      <Dependent Role="Teach">
+        <PropertyRef Name="faculty_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Test_Teacher">
+    <End Type="ExamPortalModel.Teacher" Role="Teacher" Multiplicity="1" />
+    <End Type="ExamPortalModel.Test" Role="Test" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Teacher">
+        <PropertyRef Name="faculty_id" />
+      </Principal>
+      <Dependent Role="Test">
+        <PropertyRef Name="creator" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Test_Question_Test">
+    <End Type="ExamPortalModel.Test" Role="Test" Multiplicity="1" />
+    <End Type="ExamPortalModel.Test_Question" Role="Test_Question" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Test">
+        <PropertyRef Name="test_id" />
+      </Principal>
+      <Dependent Role="Test_Question">
+        <PropertyRef Name="test_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="Assigned_Test">
+    <End Type="ExamPortalModel.Student" Role="Student" Multiplicity="*" />
+    <End Type="ExamPortalModel.Test" Role="Test" Multiplicity="*" />
+  </Association>
+  <EntityType Name="UserLogin">
+    <Key>
+      <PropertyRef Name="user_id" />
+    </Key>
+    <Property Name="user_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="username" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="password" Type="String" Nullable="false" MaxLength="50" FixedLength="true" Unicode="true" />
+    <NavigationProperty Name="Questions" Relationship="ExamPortalModel.FK_Question_Users" FromRole="UserLogin" ToRole="Question" />
+    <NavigationProperty Name="Students" Relationship="ExamPortalModel.FK_Student_Users" FromRole="UserLogin" ToRole="Student" />
+    <NavigationProperty Name="Teachers" Relationship="ExamPortalModel.FK_Teacher_Users" FromRole="UserLogin" ToRole="Teacher" />
+    <NavigationProperty Name="UserRoles" Relationship="ExamPortalModel.FK_UserRole_Users" FromRole="UserLogin" ToRole="UserRole" />
+  </EntityType>
+  <Association Name="FK_Question_Users">
+    <End Type="ExamPortalModel.UserLogin" Role="UserLogin" Multiplicity="1" />
+    <End Type="ExamPortalModel.Question" Role="Question" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="UserLogin">
+        <PropertyRef Name="user_id" />
+      </Principal>
+      <Dependent Role="Question">
+        <PropertyRef Name="creator" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Student_Users">
+    <End Type="ExamPortalModel.UserLogin" Role="UserLogin" Multiplicity="1" />
+    <End Type="ExamPortalModel.Student" Role="Student" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="UserLogin">
+        <PropertyRef Name="user_id" />
+      </Principal>
+      <Dependent Role="Student">
+        <PropertyRef Name="user_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Teacher_Users">
+    <End Type="ExamPortalModel.UserLogin" Role="UserLogin" Multiplicity="1" />
+    <End Type="ExamPortalModel.Teacher" Role="Teacher" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="UserLogin">
+        <PropertyRef Name="user_id" />
+      </Principal>
+      <Dependent Role="Teacher">
+        <PropertyRef Name="user_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_UserRole_Users">
+    <End Type="ExamPortalModel.UserLogin" Role="UserLogin" Multiplicity="1" />
+    <End Type="ExamPortalModel.UserRole" Role="UserRole" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="UserLogin">
+        <PropertyRef Name="user_id" />
+      </Principal>
+      <Dependent Role="UserRole">
+        <PropertyRef Name="user_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityType Name="TeacherAdminDesk">
+    <Key>
+      <PropertyRef Name="user_id" />
+      <PropertyRef Name="faculty_id" />
+      <PropertyRef Name="faculty_name" />
+      <PropertyRef Name="graduate" />
+      <PropertyRef Name="year_graduated" />
+      <PropertyRef Name="dob" />
+      <PropertyRef Name="blood_group" />
+      <PropertyRef Name="residential_address" />
+      <PropertyRef Name="mobile" />
+      <PropertyRef Name="is_coordinator" />
+      <PropertyRef Name="username" />
+    </Key>
+    <Property Name="user_id" Type="Int32" Nullable="false" />
+    <Property Name="faculty_id" Type="Int32" Nullable="false" />
+    <Property Name="faculty_name" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="graduate" Type="String" Nullable="false" MaxLength="200" FixedLength="false" Unicode="true" />
+    <Property Name="post_graduate" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+    <Property Name="year_graduated" Type="Decimal" Nullable="false" Precision="5" Scale="0" />
+    <Property Name="year_post_graduated" Type="Decimal" Precision="5" Scale="0" />
+    <Property Name="dob" Type="DateTime" Nullable="false" Precision="0" />
+    <Property Name="blood_group" Type="String" Nullable="false" MaxLength="5" FixedLength="false" Unicode="true" />
+    <Property Name="residential_address" Type="String" Nullable="false" MaxLength="200" FixedLength="false" Unicode="true" />
+    <Property Name="mobile" Type="Decimal" Nullable="false" Precision="10" Scale="0" />
+    <Property Name="is_coordinator" Type="Int32" Nullable="false" />
+    <Property Name="served" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+    <Property Name="username" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+  </EntityType>
+  <Association Name="FK_Question_Teacher">
+    <End Type="ExamPortalModel.Teacher" Role="Teacher" Multiplicity="1" />
+    <End Type="ExamPortalModel.Question" Role="Question" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Teacher">
+        <PropertyRef Name="faculty_id" />
+      </Principal>
+      <Dependent Role="Question">
+        <PropertyRef Name="creator" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityType Name="TempCreatedTest">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="faculty_id" Type="Int32" Nullable="false" />
+    <Property Name="q_id" Type="Int32" Nullable="false" />
+    <Property Name="unit" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="Question" Relationship="ExamPortalModel.FK_TempCreatedTest_Question" FromRole="TempCreatedTest" ToRole="Question" />
+    <NavigationProperty Name="Teacher" Relationship="ExamPortalModel.FK_TempCreatedTest_Teacher" FromRole="TempCreatedTest" ToRole="Teacher" />
+  </EntityType>
+  <Association Name="FK_TempCreatedTest_Question">
+    <End Type="ExamPortalModel.Question" Role="Question" Multiplicity="1" />
+    <End Type="ExamPortalModel.TempCreatedTest" Role="TempCreatedTest" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Question">
+        <PropertyRef Name="q_id" />
+      </Principal>
+      <Dependent Role="TempCreatedTest">
+        <PropertyRef Name="q_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_TempCreatedTest_Teacher">
+    <End Type="ExamPortalModel.Teacher" Role="Teacher" Multiplicity="1" />
+    <End Type="ExamPortalModel.TempCreatedTest" Role="TempCreatedTest" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Teacher">
+        <PropertyRef Name="faculty_id" />
+      </Principal>
+      <Dependent Role="TempCreatedTest">
+        <PropertyRef Name="faculty_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+</Schema>

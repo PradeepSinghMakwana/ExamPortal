@@ -1,0 +1,105 @@
+﻿@model IEnumerable<ExamPortal.Models.Student>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.unique_name)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.parents_phone)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.mobile)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.photo)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.enrollment_no)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.residential_address)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.permanent_address)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.fathers_name)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.mothers_name)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.adhar_no)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.blood_group)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.dob)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Student_Previous_Qualification.scholar_no)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.unique_name)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.parents_phone)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.mobile)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.photo)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.enrollment_no)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.residential_address)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.permanent_address)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.fathers_name)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.mothers_name)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.adhar_no)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.blood_group)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.dob)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Student_Previous_Qualification.scholar_no)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.scholar_no }) |
+            @Html.ActionLink("Details", "Details", new { id=item.scholar_no }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.scholar_no })
+        </td>
+    </tr>
+}
+
+</table>

@@ -1,0 +1,38 @@
+﻿@model IEnumerable<ExamPortal.Models.Question>
+<style>
+    td.correct {
+        background: yellow;
+    }
+</style>
+
+@functions{
+    public string GetClassFromNullableBool(bool? value)
+    {
+        return (value.HasValue && value.Value == true) ? "correct" : "";
+    }
+}
+<table class="table">
+    <tr>
+        <th>Select</th>
+        <th>@Html.DisplayNameFor(model => model.q_id)</th>
+        <th>@Html.DisplayNameFor(model => model.Subject)</th>
+        <th>@Html.DisplayNameFor(model => model.question_text)</th>
+        <th>@Html.DisplayNameFor(model => model.option1)</th>
+        <th>@Html.DisplayNameFor(model => model.option2)</th>
+        <th>@Html.DisplayNameFor(model => model.option3)</th>
+        <th>@Html.DisplayNameFor(model => model.option4)</th>
+    </tr>
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td><input type="checkbox" name="selected" value="@item.q_id" /></td>
+            <td>@Html.DisplayFor(modelItem => item.q_id)</td>
+            <td>@Html.DisplayFor(modelItem => item.Subject.subject_name)</td>
+            <td>@Html.DisplayFor(modelItem => item.question_text)</td>
+            <td class="@GetClassFromNullableBool(item.is_option1_correct)">@Html.DisplayFor(modelItem => item.option1)</td>
+            <td class="@GetClassFromNullableBool(item.is_option2_correct)">@Html.DisplayFor(modelItem => item.option2)</td>
+            <td class="@GetClassFromNullableBool(item.is_option3_correct)">@Html.DisplayFor(modelItem => item.option3)</td>
+            <td class="@GetClassFromNullableBool(item.is_option4_correct)">@Html.DisplayFor(modelItem => item.option4)</td>
+        </tr>
+    }
+</table>

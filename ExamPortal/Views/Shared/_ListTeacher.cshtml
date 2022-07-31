@@ -1,0 +1,111 @@
+﻿@using ExamPortal.Models
+@model IEnumerable<TeacherAdminDesk>
+
+@if (((List<string>)Session["role"]).Contains("admin"))
+{
+<p>
+    @Html.ActionLink("Create New", "CreateTeacher", "Admins", new { }, new { @class = "btn btn-primary" })
+</p>
+}
+<div>
+    <table class="table">
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.faculty_id)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.faculty_name)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.graduate)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.post_graduate)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.year_graduated)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.year_post_graduated)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.dob)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.blood_group)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.residential_address)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.mobile)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.is_coordinator)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.served)
+            </th>
+            @if (((List<string>)Session["role"]).Contains("admin"))
+            {
+                <th>
+                    @Html.DisplayNameFor(model => model.username)
+                </th>
+                <th></th>
+            }
+        </tr>
+        @foreach (var item in Model)
+        {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.faculty_id)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.faculty_name)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.graduate)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.year_graduated)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.post_graduate)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.year_post_graduated)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.dob)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.blood_group)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.residential_address)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.mobile)
+            </td>
+            <td>
+                @Html.CheckBox("is_coordinator",(bool)(item.is_coordinator==1))
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.served)
+            </td>
+            @if (((List<string>)Session["role"]).Contains("admin"))
+            {
+                <td>
+                    @Html.DisplayFor(modelItem => item.username)
+                </td>
+                <td>
+                    @Html.ActionLink("Edit", "EditTeacher","Admins", new { id = item.faculty_id }, new { @class = "btn btn-primary" }) |
+                    @Html.ActionLink("Delete", "DeleteTeacher","Admins", new { id = item.faculty_id }, new { @class = "btn btn-danger" })
+                </td>
+            }
+        </tr>
+        }
+
+    </table>
+
+</div>
